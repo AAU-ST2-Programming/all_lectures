@@ -1,0 +1,15 @@
+https://github.com/AAU-ST2-Programming/oop_1.git
+https://github.com/AAU-ST2-Programming/oop_2.git
+https://github.com/AAU-ST2-Programming/oop_3.git
+https://github.com/AAU-ST2-Programming/oop_4_workshop.git
+https://github.com/AAU-ST2-Programming/signals_1.git
+https://github.com/AAU-ST2-Programming/signals_2.git
+https://github.com/AAU-ST2-Programming/signals_3.git
+https://github.com/AAU-ST2-Programming/signals_4_workshop.git
+https://github.com/AAU-ST2-Programming/signals_1.git
+https://github.com/AAU-ST2-Programming/signals_2.git
+https://github.com/AAU-ST2-Programming/signals_3.git
+https://github.com/AAU-ST2-Programming/populations_data_1.git
+https://github.com/AAU-ST2-Programming/populations_data_2.git
+https://github.com/AAU-ST2-Programming/populations_data_3.git
+https://github.com/AAU-ST2-Programming/populations_data_4_workshop.git
