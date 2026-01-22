@@ -183,7 +183,7 @@ Exercise 1. Load SCG and apply smoothing filter
 
 Exercise 2. Peak detection
 
-*   Use scipy.find\_peaks
+*   Use scipy.find_peaks
 *   Extract mechanical beats
 *   Compute average mechanical interval
 
@@ -217,7 +217,7 @@ Focus: low‑pass filtering, pulse detection, amplitude and rise‑time metrics,
 
 *   Why CSV feature tables require a tabular library
 *   DataFrame basics (columns, rows, indexing)
-*   Very limited intro: read\_csv, head(), describe()
+*   Very limited intro: read_csv, head(), describe()
 
 Mini‑exercise 1  
 Load a tiny csv and compute descriptive stats.
