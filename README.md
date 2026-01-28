@@ -183,7 +183,7 @@ Exercise 1. Load SCG and apply smoothing filter
 
 Exercise 2. Peak detection
 
-*   Use scipy.find\_peaks
+*   Use scipy.find_peaks
 *   Extract mechanical beats
 *   Compute average mechanical interval
 
