@@ -202,77 +202,157 @@ Exercise 4. Simple regression
 
 ***
 
-# LECTURE 7
+# LECTURE 7 — PPG + Feature Engineering (hard focus on “features”)
 
-PPG and Feature Engineering
+Duration: 2h lecture + 2h exercises  
+Focus: what a *feature* is, how to design features, and how to build a beat-level feature table from PPG (filtering is assumed known).
 
-Duration: 2h lecture + 2–3h exercises  
-Focus: low‑pass filtering, pulse detection, amplitude and rise‑time metrics, pandas introduction.
+---
 
-***
+## Why this lecture (the “conceptual upgrade”)
+Students already know how to filter signals. Now they need to understand:
 
-## CONTENT (Lecture)
+- Raw signal ≠ information: a *feature* is a *measurable summary* that preserves what you care about and discards what you don’t.
+- Features are choices: they embed assumptions (physiology + noise model + sampling + sensor placement).
+- A good feature is: interpretable, robust to noise/artifacts, stable across sessions, and useful for a downstream task (classification/regression/monitoring).
 
-### Part 1. Introduction to pandas (motivation only)
+---
 
-*   Why CSV feature tables require a tabular library
-*   DataFrame basics (columns, rows, indexing)
-*   Very limited intro: read\_csv, head(), describe()
+## CONTENT (Lecture, 2h)
 
-Mini‑exercise 1  
-Load a tiny csv and compute descriptive stats.
+### Part 1 (25–30 min): What is a “feature”?
+Core concepts:
+- Definitions: sample → signal → segment/beat → feature → feature table
+- “Task-first” thinking: you choose features based on the question (stress? vasoconstriction? HRV?)
+- Robustness: invariance (scale/offset), sensitivity to artifacts, sampling effects
+- Feature types:
+  - Beat-level: per pulse/beat (amplitude, rise time, width)
+  - Window-level: summary over N seconds (mean HR, variability, percent bad beats)
+  - Context/metadata features: posture, device, sampling rate, etc.
 
-### Part 2. PPG and physiology
+Mini‑exercise 1 (5–8 min): “Feature vs raw”
+- Give students a short PPG segment and ask: “What single number best captures ‘pulse strength’ here?”  
+- They propose candidates (peak-to-peak amplitude, area, RMS, slope), then discuss pros/cons.
 
-*   Why PPG amplitude varies
-*   Systolic upstroke
-*   Pulse arrival time (conceptually)
+---
 
-### Part 3. Filtering
+### Part 2 (20–25 min): PPG physiology + artifacts (only what supports features)
+- What PPG measures (blood volume changes)
+- Why amplitude varies (perfusion, pressure, motion, sensor contact)
+- Typical pulse landmarks:
+  - Foot (pulse onset)
+  - Systolic peak
+  - Dicrotic notch (sometimes)
+- Artifact patterns: motion spikes, baseline wander, clipping, dropped beats
 
-*   Introduce low‑pass filter
-*   Why PPG is susceptible to noise
+Mini‑exercise 2 (5–8 min): “Spot the artifact”
+- Show 3 pulses: clean / motion / clipped.  
+- Ask: which feature breaks first and why?
 
-Mini‑exercise 2  
-Apply low‑pass filter to synthetic noisy sinusoid.
+---
 
-### Part 4. Feature engineering
+### Part 3 (30–35 min): Feature extraction pipeline (you already know filtering)
+Pipeline (teach as a repeatable recipe):
+1) Load + inspect (units, fs, missing)
+2) (Optional) smooth/low-pass (use a given Butterworth helper, no deep theory)
+3) Beat segmentation (peak detection + foot detection)
+4) Compute features per beat
+5) Quality control flags (exclude bad beats)
+6) Build feature table (pandas)
+7) Save features + metadata
 
-*   Peak amplitude
-*   Rise time
-*   Beat‑to‑beat metrics
-*   Why features matter more than raw curves
+Mini‑exercise 3 (10–12 min): “Same signal, different features”
+- Students compute amplitude + rise time from two parameter choices (e.g., different peak distance / smoothing window) and observe feature drift.
 
-***
+---
 
-## ETHICS MINI‑TOPIC
+### Part 4 (20–25 min): From beats → feature table (pandas for real)
+- Why a DataFrame matters: one row per beat, columns = features
+- Minimal pandas used *for purpose*:
+  - `pd.DataFrame(...)`, `describe()`, `isna()`, `to_csv()`
+- “Schema thinking”: consistent column names, units, and metadata
 
-Topic: Data minimization and privacy by design  
-Key points: store derived features instead of raw biosignals when possible.
+Mini‑exercise 4 (5–8 min): “Schema design”
+- Students propose a column schema: `t_peak_s`, `ibi_s`, `amp_au`, `rise_time_s`, `qc_flag`, `subject_id_pseudo`.
 
-***
+---
 
-## EXERCISE SESSION (2–3h)
+## ETHICS MINI‑TOPIC (5–10 min)
+Topic: Data minimization + privacy by design (applied to biosignals)
 
-Exercise 1. Load PPG and filter
+Key points:
+- Store derived features instead of raw biosignals when possible (goal-dependent).
+- Raw PPG can be sensitive health data; even “anonymized” signals can carry re-identification risk when combined with metadata.
+- Always capture *necessary* metadata for reproducibility (fs, device, protocol) without adding identity fields.
 
-*   Apply low-pass filter using scipy
-*   Compare raw and filtered versions
+Tiny ethics prompt (2 min):
+- “What is the minimum you need to store to reproduce your results?”
 
-Exercise 2. Detect peaks
+---
 
-*   Extract pulse amplitude
-*   Compute mean and variance
+## EXERCISE SESSION (2h)
 
-Exercise 3. Compute rise time per beat
+### Exercise 1 — Load PPG and sanity check
+**Scenarie:**
+Du er dataanalytiker på et hospital og har fået en PPG-optagelse til kvalitetskontrol og feature‑udtræk.
 
-*   Compute time from foot-to-peak per pulse
-*   Store results in a pandas DataFrame
+**(Fiktiv patientjournal — kun til øvelse)**
+- Navn: *Sara Holm*
+- Alder: 29 år
+- Dato/tid: 2026-01-21 kl. 10:05
+- Sted: Hjerteambulatorium (Test-rum B)
+- Notat: “svimmelhed ved oprejsning”
 
-Exercise 4. Save features
+**Du skal:**
+- Indlæs PPG (og evt. timestamp)
+- Plot rå signal + zoom på 10 sek
+- Estimér/brug `fs` og tjek om der er clipping/missing
 
-*   Save DataFrame to csv
-*   Compare file sizes vs raw signal
+**Etik (1 spørgsmål):**
+- Hvilke felter fra journalen må aldrig ende i din CSV/rapport?
+
+---
+
+### Exercise 2 — Beat detection (peaks) + QC flag
+- Find systolic peaks (robust parametervalg)
+- Lav et simpelt QC-flag pr. beat (fx “peak too small”, “too close”, “clipped segment”)
+
+---
+
+### Exercise 3 — Compute beat features
+Compute per beat:
+- `ibi_s` (inter-beat interval)
+- `hr_bpm`
+- `amp_au` (peak − foot or peak − local baseline)
+- `rise_time_s` (foot → peak)
+Optional “harder”:
+- pulse width at 50% amplitude
+- area under pulse (AUC)
+- max upstroke slope (derivative-based)
+
+---
+
+### Exercise 4 — Build feature table + save
+- Put everything in a pandas DataFrame (one row per beat)
+- Save `features_ppg.csv`
+- Save a tiny `metadata.json` (fs, device, filter params, date of analysis—not patient identity)
+
+**Etik (short checklist):**
+- Did you minimize stored data?
+- Where is it stored (access control)?
+- When will it be deleted?
+
+---
+
+## PhysioNet data + filenames (simple, robust convention)
+PPG is a great signal for “feature” teaching because pulse shape → features is intuitive. If you want a “better” companion signal, add **ABP** (arterial blood pressure) or ECG for validation, but PPG alone is enough.
+
+Recommended filename convention (so your downloader stays simple):
+- `ppg_subject001.csv` with columns: `t_s, ppg_au`
+- Optional: `ecg_subject001.csv` with columns: `t_s, ecg_au`
+- Optional combined: `subject001_ppg.csv`, `subject001_features.csv`, `subject001_metadata.json`
+
+If you tell me which PhysioNet dataset you plan to use (just the dataset name), I can propose an exact folder layout + exact output filenames to match your script in physionet_data_conversion.
 
 ***
 
