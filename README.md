@@ -35,13 +35,22 @@ Overblik over 12 forelæsninger, der dækker grundlæggende programmering, objek
 
 ---
 
+# Literatur Oversigt
+Jeg elsker personligt gratis literatur.  *Specielt når det er lovligt.*
+
+## Hjemmesider
+- https://www.tutorialspoint.com/python/index.htm
+- https://numpy.org/doc/stable/reference/index.html
+- https://matplotlib.org/stable/
+- https://scikit-learn.org/stable/
+
+## Bøger
+- [Think Python (eBook/PDF)](https://allendowney.github.io/ThinkPython/)
+- [Python for Everybody (eBook/PDF)](https://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf)
+- [Data Wrangling with Python (eBook/PDF)](https://datawranglingpy.gagolewski.com/datawranglingpy.pdf)
+---
+
 # FORELÆSNING 1: OOP 1 – Hej C og Python
-
-**Mappe:** `oop_1`  
-**Varighed:** 4t (2t forelæsning + 2t øvelser)  
-**Jupyter Notebook:** `AP-HelloPython.ipynb`
-
-## Primære emner dækket i notebooken
 
 **Hvorfor både C og Python?**
 - C: enkelhed men brutal fejlhåndtering, manuel hukommelsesstyring
@@ -211,87 +220,7 @@ Grundlaget for Python-programmering: forstå syntaks, brug debugger, øv simple 
 
 ## Øvelse 1: Overvågningssystem for én enhed (1t 45m)
 
-**Scenarie:** Du har en pulsmåler. Byg et system til at indsamle målinger, gemme dem sikkert og gemme til disk.
-
-**Krav:**
-1. Definér en `Measurement`-klasse:
-   - Gemmer: værdi, tidsstempel
-   - Validerer: puls skal være 40-200 bpm (afvis ugyldige data)
-   - Metode: `is_valid()` returnerer True/False
-
-2. Definér en `Device`-klasse:
-   - Gemmer: navn, device_id, liste af målinger
-   - Metoder: `add_measurement(measurement)`, `get_all_measurements()`, `get_stats()` (gennemsnit, min, max)
-   - Indkapsling: målinger tilgås kun via metoder, ikke direkte
-
-3. Simulér dataindsamling:
-   - Opret enhed, generér 20 tilfældige målinger (nogle gyldige, nogle ugyldige)
-   - Tilføj kun gyldige målinger til enheden
-   - Print statistik: hvor mange accepteret vs afvist?
-
-4. Gem til fil (forelæsning 3):
-   - Skriv målinger til CSV: tidsstempel, værdi, device_id
-   - Medtag metadata: enhedsnavn, antal målinger, indsamlingsdato
-
-5. Indlæs og verificér:
-   - Læs CSV ind i en ny enhed
-   - Verificér at indlæste data matcher de gemte (round-trip-test)
-
-6. Visualisér:
-   - Plot målinger over tid
-   - Tilføj middelværdi-linje og ±1 std-bånd
-   - Label akser, titel med enhedsnavn
-
-**Centrale færdigheder:**
-- Indkapsling: datavalidering i konstruktør/metoder
-- Objektinteraktion: Enhed indeholder Måling-objekter
-- Fil-I/O: skriv og parse CSV
-- Visualisering: matplotlib-linjeplot med bånd
-
----
-
 ## Øvelse 2: Data-system til flere enheder (1t 45m)
-
-**Scenarie:** Hospitalet har flere monitorer (EKG, PPG, temperatur). Byg et system til at styre alle enheder, indsamle data og muliggøre tvær-enheds-analyse.
-
-**Krav:**
-1. Udvid fra Øvelse 1:
-   - Genbrug `Device`- og `Measurement`-klasserne (ingen ændringer nødvendige)
-   - Opret `DataCollector`-klasse (ny):
-     - Gemmer: liste af enheder
-     - Metoder: `add_device(device)`, `add_measurement(device_id, measurement)`, `get_device(device_id)`, `get_all_devices()`
-     - Indkapsling: enheder tilgås gennem metoder
-
-2. Initialisér system:
-   - Opret 3 enheder: EKG (0-150 bpm), PPG (40-200 bpm), Temperatur (35-41°C)
-   - Tilføj til collector
-   - Generér 15-20 målinger per enhed (blanding af gyldige og ugyldige)
-
-3. Gem alle data:
-   - Skriv til én CSV: device_type, device_id, tidsstempel, værdi
-   - Metadatafil (JSON): enhedsnavne, intervaller, indsamlingsdato, antal målinger per enhed
-
-4. Indlæs og verificér:
-   - Læs CSV og metadata
-   - Rekonstruér enheder og målinger
-   - Verificér at ingen data er tabt (sammenlign rækkeantal, værdiintervaller)
-
-5. Analysér og visualisér:
-   - Subplot: ét plot per enhed (3 subplots)
-   - Hvert plot: målinger over tid med middelværdi og std
-   - Sammenlign: hvilken enhed har størst variation? flest afvisninger?
-
-6. Tvær-enheds-indsigt (bonus):
-   - Korrelation mellem enheder (fx korrelerer EKG med PPG?)
-   - Plot korrelations-scatter plot
-
-**Centrale færdigheder:**
-- Objektkomposition: Collector indeholder Enheder; Enheder indeholder Målinger
-- Flere filoperationer: CSV-data + JSON-metadata
-- Parsing og validering: rekonstruér fra gemte data
-- Multi-panel-visualisering: subplots til sammenligning
-- Komplet pipeline: design → implementér → gem → indlæs → analysér → visualisér
-
 ---
 
 ## Workshop-læringsmål
