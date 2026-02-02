@@ -11,7 +11,7 @@ Overview of 12 lectures covering foundational programming, object-oriented desig
 | 1 | Hello C and Python | oop_1 | 4h | Programming languages, basic syntax, environment setup |
 | 2 | Objects, Encapsulation, Interaction | oop_2 | 4h | Classes, methods, data encapsulation, object interaction |
 | 3 | Files and Data Loading | oop_3 | 4h | File I/O, CSV parsing, combining OOP with data |
-| 4 | Integration Workshop | oop_4_workshop | 4h | Integration of OOP, file I/O, visualization; device monitoring systems |
+| 4 | OOP Integration Workshop | oop_4_workshop | 4h | Integration of OOP, file I/O, visualization; device monitoring systems |
 | 5 | Signal Basics | signals_1 | 4h | ECG physiology, statistics, peak detection |
 | 6 | Filtering and Mechanical Signals | signals_2 | 4h | Filtering, SCG physiology, mechanical timing, envelope extraction |
 | 7 | Feature Engineering, PPG and Regression | signals_3 | 4h | Feature definition, PPG physiology, linear regression, variation metrics |
@@ -211,7 +211,7 @@ Foundation for Python programming: understand syntax, use debugger, practice wit
 
 ---
 
-# LECTURE 4: OOP 4 – Integration Workshop
+# LECTURE 4: OOP 4 – OOP Integration Workshop
 
 **Folder:** `oop_4_workshop`  
 **Duration:** 4h (0.5h intro + 1.75h exercise 1 + 1.75h exercise 2)  
