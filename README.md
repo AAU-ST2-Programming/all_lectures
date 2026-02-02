@@ -22,7 +22,7 @@ Overblik over 12 forelæsninger, der dækker grundlæggende programmering, objek
 |---|------------|-------|----------------|
 | 1 | Hej C og Python | oop_1 | Programmeringssprog, grundlæggende syntaks, miljøopsætning |
 | 2 | Objekter, indkapsling, interaktion | oop_2 | Klasser, metoder, dataindkapsling, objektinteraktion |
-| 3 | Filer og dataindlæsning | oop_3 | Fil-I/O, CSV-parsing, kombinering af OOP og data |
+| 3 | Filer og dataindlæsning | oop_3 | Fra tekstfil til objekter |
 | 4 | OOP-integration workshop | oop_4_workshop | Integration af OOP, fil-I/O, visualisering; overvågningssystemer til enheder |
 | 5 | Signalgrundlag | signals_1 | EKG-fysiologi, statistik, peak-detektion |
 | 6 | Filtrering og mekaniske signaler | signals_2 | Filtrering, SCG-fysiologi, mekanisk timing, Envelope-udtrækning |
