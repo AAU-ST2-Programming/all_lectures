@@ -1,3 +1,13 @@
+# Beskrivelse
+Du kan få alle lectures i dette kursus ved at køre følgende funktion i din terminal:
+>```
+> python sync.py
+>```
+Denne vil download alle github repos inden i den mappe hvor du har sync.py.
+
+*Note: Denne funktion kræver at du har git og python installeret på din computer.*
+
+
 # COMPLETE LECTURE PLAN – ST2 APPLIED PROGRAMMING
 
 Overview of 12 lectures covering foundational programming, object-oriented design, signal processing, and population data analysis.

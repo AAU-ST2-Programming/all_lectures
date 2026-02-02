@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import subprocess
 import os
+import shutil
+import argparse
 from pathlib import Path
 
 REPOS_FILE = "repos.txt"
@@ -11,7 +13,7 @@ def run(cmd, cwd=None):
     result = subprocess.run(cmd, cwd=cwd, check=True)
     return result.returncode
 
-def sync_repo(url, branch="main"):
+def sync_repo(url, branch="main", ignore_merge_error=False):
     """Clone or pull the repo."""
     name = Path(url).stem
     repo_path = Path(name)
@@ -19,12 +21,32 @@ def sync_repo(url, branch="main"):
         print(f"Updating {name}...")
         run(["git", "fetch", "origin"], cwd=name)
         run(["git", "checkout", branch], cwd=name)
-        run(["git", "pull"], cwd=name)
+        try:
+            run(["git", "pull"], cwd=name)
+        except subprocess.CalledProcessError:
+            if ignore_merge_error:
+                print(
+                    f"Warning: merge conflict or pull error in {name}. Skipping this repo."
+                )
+                return
+            raise
     else:
         print(f"Cloning {name}...")
         run(["git", "clone", "--branch", branch, url])
 
 def main():
+    parser = argparse.ArgumentParser(description="Sync git repositories from repos.txt")
+    parser.add_argument(
+        "--ignore-merge-error",
+        action="store_true",
+        help="Skip a repo if git pull results in a merge conflict or pull error.",
+    )
+    args = parser.parse_args()
+
+    if shutil.which("git") is None:
+        print("Git is not installed or not available in PATH. Please install Git and try again.")
+        return
+
     if not Path(REPOS_FILE).exists():
         print(f"{REPOS_FILE} not found!")
         return
@@ -37,7 +59,7 @@ def main():
             parts = line.split()
             url = parts[0]
             branch = parts[1] if len(parts) > 1 else "main"
-            sync_repo(url, branch)
+            sync_repo(url, branch, ignore_merge_error=args.ignore_merge_error)
 
 if __name__ == "__main__":
     main()
