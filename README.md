@@ -1,4 +1,5 @@
-# Beskrivelse
+# Forord
+
 Du kan få alle lectures i dette kursus ved at køre følgende funktion i din terminal:
 >```
 > python sync.py
@@ -8,469 +9,413 @@ Denne vil download alle github repos inden i den mappe hvor du har sync.py.
 *Note: Denne funktion kræver at du har git og python installeret på din computer.*
 
 
-# COMPLETE LECTURE PLAN – ST2 APPLIED PROGRAMMING
 
-Overview of 12 lectures covering foundational programming, object-oriented design, signal processing, and population data analysis.
+# KOMPLET FORELÆSNINGSPLAN – ST2 ANVENDT PROGRAMMERING
 
----
-
-## LECTURE OVERVIEW
-
-| # | Lecture | Folder | Duration | Primary Topics |
-|---|---------|--------|----------|-----------------|
-| 1 | Hello C and Python | oop_1 | 4h | Programming languages, basic syntax, environment setup |
-| 2 | Objects, Encapsulation, Interaction | oop_2 | 4h | Classes, methods, data encapsulation, object interaction |
-| 3 | Files and Data Loading | oop_3 | 4h | File I/O, CSV parsing, combining OOP with data |
-| 4 | OOP Integration Workshop | oop_4_workshop | 4h | Integration of OOP, file I/O, visualization; device monitoring systems |
-| 5 | Signal Basics | signals_1 | 4h | ECG physiology, statistics, peak detection |
-| 6 | Filtering and Mechanical Signals | signals_2 | 4h | Filtering, SCG physiology, mechanical timing, envelope extraction |
-| 7 | Feature Engineering, PPG and Regression | signals_3 | 4h | Feature definition, PPG physiology, linear regression, variation metrics |
-| 8 | Signal Integration and Ethics | signals_4_workshop | 4h | Multimodal integration, signal workflow reflection, ethical analysis |
-| 9 | Linear Regression with Population Data | populations_data_1 | 4h | Linear regression, model validation, residuals |
-| 10 | Data Visualization and Unsupervised Learning | populations_data_2 | 4h | Data visualization, distributions, scatter plots, k-means clustering (Iris dataset) |
-| 11 | Supervised Learning: Classification | populations_data_3 | 4h | k-NN classification, decision boundaries, model evaluation |
-| 12 | Data Integration Workshop | populations_data_4_workshop | 4h | End-to-end analysis: regression, clustering, classification, reproducibility, communication |
+Overblik over 12 forelæsninger, der dækker grundlæggende programmering, objektorienteret design, signalbehandling og analyse af populationsdata.
 
 ---
 
-# LECTURE 1: OOP 1 – Hello C and Python
+## OVERBLIK OVER FORELÆSNINGER
 
-**Folder:** `oop_1`  
-**Duration:** 4h (2h lecture + 2h exercises)  
+| # | Forelæsning | Mappe | Varighed | Primære emner |
+|---|------------|-------|----------|----------------|
+| 1 | Hej C og Python | oop_1 | 4t | Programmeringssprog, grundlæggende syntaks, miljøopsætning |
+| 2 | Objekter, indkapsling, interaktion | oop_2 | 4t | Klasser, metoder, dataindkapsling, objektinteraktion |
+| 3 | Filer og dataindlæsning | oop_3 | 4t | Fil-I/O, CSV-parsing, kombinering af OOP og data |
+| 4 | OOP-integration workshop | oop_4_workshop | 4t | Integration af OOP, fil-I/O, visualisering; overvågningssystemer til enheder |
+| 5 | Signalgrundlag | signals_1 | 4t | EKG-fysiologi, statistik, peak-detektion |
+| 6 | Filtrering og mekaniske signaler | signals_2 | 4t | Filtrering, SCG-fysiologi, mekanisk timing, Envelope-udtrækning |
+| 7 | Feature engineering, PPG og regression | signals_3 | 4t | Feature-definition, PPG-fysiologi, lineær regression, variationsmål |
+| 8 | Signalintegration og etik | signals_4_workshop | 4t | Multimodal integration, refleksion over signal-workflow, etisk analyse |
+| 9 | Lineær regression med populationsdata | populations_data_1 | 4t | Lineær regression, modelvalidering, residualer |
+| 10 | Datavisualisering og unsupervised læring | populations_data_2 | 4t | Datavisualisering, fordelinger, scatter plots, k-means clustering (Iris-datasæt) |
+| 11 | Supervised learning: klassifikation | populations_data_3 | 4t | k-NN-klassifikation, beslutningsgrænser, modelevaluering |
+| 12 | Data-integration workshop | populations_data_4_workshop | 4t | End-to-end analyse: regression, clustering, klassifikation, reproducerbarhed, formidling |
+
+---
+
+# FORELÆSNING 1: OOP 1 – Hej C og Python
+
+**Mappe:** `oop_1`  
+**Varighed:** 4t (2t forelæsning + 2t øvelser)  
 **Jupyter Notebook:** `AP-HelloPython.ipynb`
 
-## Primary Topics Covered in Notebook
+## Primære emner dækket i notebooken
 
-**Why both C and Python?**
-- C: simplicity but brutal error handling, manual memory management
-- Python: easy to learn, simplicity, extensive libraries, free, used everywhere
-- When to use each: C for systems programming, Python for data science and AI
+**Hvorfor både C og Python?**
+- C: enkelhed men brutal fejlhåndtering, manuel hukommelsesstyring
+- Python: let at lære, enkelhed, omfattende biblioteker, gratis, bruges overalt
+- Hvornår bruges hvad: C til systemprogrammering, Python til datalogi og AI
 
-**C vs Python: Key Syntax Differences**
-- Functions: C requires explicit return types, Python is implicit
-- Arrays/Lists: C static arrays, Python dynamic lists with methods
-- Conditionals: C switch/case, Python if/elif/else and match
-- Loops: C for/while with explicit incrementing, Python for-in with range()
-- Memory: C pointers and manual management, Python automatic
-- Type system: C explicit typing, Python dynamic typing
+**C vs Python: Centrale syntaksforskelle**
+- Funktioner: C kræver eksplicitte returtyper, Python er implicit
+- Arrays/lister: C statiske arrays, Python dynamiske lister med metoder
+- Betingelser: C switch/case, Python if/elif/else og match
+- Løkker: C for/while med eksplicit inkrementering, Python for-in med range()
+- Hukommelse: C pointers og manuel styring, Python automatisk
+- Typesystem: C eksplicit typning, Python dynamisk typning
 
-**Python Advantages and Disadvantages**
-- Pros: easy to learn, simplicity, extensive ecosystem (NumPy, SciPy, pandas, matplotlib), free, AI/ML standard
-- Cons: slow, inefficient, runtime errors (dynamic typing), requires debugger usage
+**Python: Fordele og ulemper**
+- Fordele: let at lære, enkelhed, stort økosystem (NumPy, SciPy, pandas, matplotlib), gratis, standard i AI/ML
+- Ulemper: langsomt, ineffektivt, runtime-fejl (dynamisk typning), kræver debugger
 
-**Development Plan: Encapsulation and Generalization Workflow**
-1. Write small program without functions (get it working)
-2. Encapsulate working pieces into functions with clear names
-3. Generalize functions by adding parameters
-4. Repeat until you have working functions
-5. Refactor to improve and reduce duplication
+**Udviklingsplan: Indkapsling og generaliserings-workflow**
+1. Skriv et lille program uden funktioner (få det til at virke)
+2. Indkapsl fungerende dele i funktioner med tydelige navne
+3. Generalisér funktionerne ved at tilføje parametre
+4. Gentag indtil du har fungerende funktioner
+5. Refaktorér for at forbedre og reducere duplikation
 
-**Environment Setup and Tools**
-- Miniconda installation and conda package management
-- Anaconda Navigator for environment management
-- VS Code with Python extension (launched from Navigator)
-- Running scripts, Python REPL (`python` command), version checking (`python -V`)
+**Miljøopsætning og værktøjer**
+- Installation af Miniconda og conda-pakkestyring
+- Anaconda Navigator til miljøstyring
+- VS Code med Python-udvidelse (startet fra Navigator)
+- Kørsel af scripts, Python REPL (`python`-kommando), versionskontrol (`python -V`)
 
-**Python Fundamentals Covered**
-- Variables and types: int, float, str, bool (dynamic typing)
-- Arithmetic operations and string operations
-- Lists and dictionaries: creation, manipulation (append, remove, pop)
-- Conditionals: if/elif/else, match/case
-- Loops: for (with range), while
-- Functions: definition with def, parameters, return values
-- F-strings for formatted output: `f"{variable=}"`
-- Package installation with conda: `conda install <package>`
+**Python-grundlag dækket**
+- Variabler og typer: int, float, str, bool (dynamisk typning)
+- Aritmetiske og strengoperationer
+- Lister og dictionaries: oprettelse, manipulation (append, remove, pop)
+- Betingelser: if/elif/else, match/case
+- Løkker: for (med range), while
+- Funktioner: definition med def, parametre, returværdier
+- F-strings til formateret output: `f"{variable=}"`
+- Pakkeinstallation med conda: `conda install <package>`
 
-## Exercise Structure
-- **Exercise 1:** Variables and calculations (using debugger to understand state)
-- **Exercise 2:** Math operations (addition, subtraction, multiplication, division)
-- **Exercise 3:** Working with lists (create, append, remove, combine, sum)
-- **Exercise 4:** Functions (define, parameters, return values, formatted output)
-- **Exercise 5:** Data visualization with matplotlib (scatter plot from data)
-
-## Key Takeaway
-Foundation for Python programming: understand syntax, use debugger, practice with simple operations before moving to classes.
+## Vigtig pointe
+Grundlaget for Python-programmering: forstå syntaks, brug debugger, øv simple operationer før du går videre til klasser.
 
 ---
 
-# LECTURE 2: OOP 2 – Objects, Encapsulation, and Interaction
+# FORELÆSNING 2: OOP 2 – Objekter, indkapsling og interaktion
 
-**Folder:** `oop_2`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `objekter og sammenspil.ipynb`
+**Hvad er objekter?**
+- Objekter samler data (tilstand lagret i attributter) og adfærd (metoder/funktioner)
+- Objektidentitet: hver instans er unik
+- Objekter modellerer virkelige entiteter (Patient, Sensor, Enhed, Monitor)
 
-## Primary Topics Covered in Notebook
+**At definere klasser i Python**
+- Konstruktør `__init__(self, ...)`: initialiserer objektets tilstand
+- Instansvariabler: gemmes med `self.attribute_name`
+- Metoder: funktioner der arbejder på `self`
+- `self`-parameteren: implicit reference til den aktuelle instans
 
-**What Are Objects?**
-- Objects bundle data (state stored in attributes) and behavior (methods/functions)
-- Object identity: each instance is unique
-- Objects model real-world entities (Patient, Sensor, Device, Monitor)
+**Indkapsling og databeskyttelse (centralt tema)**
+- **Problem:** data kan ændres direkte og blive ugyldige (fx `patient.heart_rate = -500`)
+- **Løsning:** brug `_`-konventionen for private attributter (fx `self._heart_rate`)
+- Python håndhæver det ikke, men konventionen signalerer: "internt, tilgå ikke direkte"
+- Kontrolleret adgang: brug metoder til sikkert at ændre tilstand (fx `update_heart_rate(new_hr)`)
+- Validering: metoder kan indeholde regler (fx kun tillad 0 ≤ HR ≤ 250)
 
-**Defining Classes in Python**
-- Constructor `__init__(self, ...)`: initializes object state
-- Instance variables: stored with `self.attribute_name`
-- Methods: functions that operate on `self`
-- The `self` parameter: implicit reference to current object instance
+**Objektinteraktion**
+- Objekter kommunikerer ved at kalde metoder på andre objekter
+- Eksempel: `patient.update_from_sensor(sensor)` — sensor gives som parameter
+- Fordele: modularitet, løs kobling, testbarhed, klar adskillelse af ansvar
+- Mønster: hver klasse har ét klart ansvar
 
-**Encapsulation and Data Protection (Key Theme)**
-- **Problem:** data can be changed directly and invalidated (e.g., `patient.heart_rate = -500`)
-- **Solution:** use `_` convention for private attributes (e.g., `self._heart_rate`)
-- Python doesn't enforce, but convention signals: "internal, don't access directly"
-- Controlled access: provide methods to safely modify state (e.g., `update_heart_rate(new_hr)`)
-- Validation: methods can contain rules (e.g., only allow 0 ≤ HR ≤ 250)
+**Samlinger af objekter**
+- Gem objekter i lister: `patients = [p1, p2, p3]`
+- Iterér og anvend operationer: `for p in patients: p.update_from_sensor(sensor)`
+- Udbredt mønster i medicinske systemer
 
-**Object Interaction**
-- Objects communicate by calling methods on other objects
-- Example: `patient.update_from_sensor(sensor)` — sensor passed as parameter
-- Benefits: modularity, loose coupling, testability, clear separation of concerns
-- Pattern: each class has one clear responsibility
+**Etisk overvejelse: Data governance by design**
+- Indkapsling håndhæver adgangspolitikker på kode-niveau
+- Følsomme felter (diagnoser, målinger) skal beskyttes i designet
+- Audit trails: metoder kan logge hvem der tilgår hvad
+- Privacy by design: tænk adgangskontrol ind før du skriver kode
 
-**Collections of Objects**
-- Store objects in lists: `patients = [p1, p2, p3]`
-- Iterate and apply operations: `for p in patients: p.update_from_sensor(sensor)`
-- Common pattern in medical systems
-
-**Ethics Consideration: Data Governance by Design**
-- Encapsulation enforces data access policies at code level
-- Sensitive fields (diagnoses, measurements) must be protected by design
-- Audit trails: methods can log who accesses what
-- Privacy by design: think about access control before writing code
-
-## Exercise Structure
-- **Exercise 1:** Your first class (Device with name and status)
-- **Exercise 2:** Methods and state (turn_on, turn_off methods)
-- **Exercise 3:** Protect internal state (_status as private)
-- **Exercise 4:** Patient and measurements (PatientInfo class)
-- **Exercise 5:** Sensor → Patient (HeartRateSensor measures, Patient updates from sensor)
-- **Exercise 6:** Multiple patients in list (iterate, update, display)
-- **Exercise 7:** Monitoring and alerts (Monitor class checks for abnormal values)
-
-## Key Patterns Demonstrated
-- **Encapsulation:** `_private` attributes, public methods
-- **Interaction:** objects receive other objects as parameters
-- **Validation:** methods enforce invariants
-- **Lists:** collections of objects with loops
+## Centrale mønstre demonstreret
+- **Indkapsling:** `_private` attributter, offentlige metoder
+- **Interaktion:** objekter modtager andre objekter som parametre
+- **Validering:** metoder håndhæver invarianter
+- **Lister:** samlinger af objekter med løkker
 
 ---
 
-# LECTURE 3: OOP 3 – Files and Data Loading
+# FORELÆSNING 3: OOP 3 – Filer og dataindlæsning
 
-**Folder:** `oop_3`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `AP-LoadData.ipynb`
+**Filer som datakilde**
+- Rigtige data kommer fra filer, ikke hardcodede værdier eller brugerinput
+- Datakilder: medicinske enheder, logfiler, softwareeksport, eksperimenter
+- **Filer er forbindelsen til virkeligheden**
 
-## Primary Topics Covered in Notebook
+**Fil-I/O grundlæggende**
+- Åbning og læsning: `with open("filename", "r") as f:`
+- `with`-statement: automatisk lukning af filen, fejlhåndtering
+- `f.read()`: hele filen som én streng
+- `f.readlines()`: filen som liste af strenge (inkluderer `\n`)
+- Lukning sker automatisk med `with`
 
-**Files as Data Source**
-- Real data comes from files, not hardcoded values or user input
-- Data sources: medical devices, logfiles, software exports, experiments
-- **Filer er forbindelsen til virkelighed** (Files are the connection to reality)
+**Parsing af strukturerede data**
+- Strengoperationer: `.strip()` (fjerner whitespace og `\n`), `.split(",")` (split ved delimiter)
+- Typekonvertering: `int(string)`, `float(string)`, `str(value)`
+- **Typisk pipeline:** læs linje → strip → split → konvertér → gem
+- Eksempel: `values.append(int(line.strip()))`
 
-**File I/O Fundamentals**
-- Opening and reading: `with open("filename", "r") as f:`
-- `with` statement: automatic file closing, error handling
-- `f.read()`: entire file as one string
-- `f.readlines()`: file as list of strings (includes `\n`)
-- Closing happens automatically with `with`
+**CSV-format**
+- Comma-Separated Values: simpelt, bredt understøttet
+- Første linje indeholder ofte header
+- `skiprows=1` for at springe header over
+- Flere kolonner: brug `delimiter=","` og split
 
-**Parsing Structured Data**
-- String operations: `.strip()` (remove whitespace and `\n`), `.split(",")` (split by delimiter)
-- Type conversion: `int(string)`, `float(string)`, `str(value)`
-- **Common pipeline:** read line → strip → split → convert → store
-- Example: `values.append(int(line.strip()))`
+**Kombinér OOP og filindlæsning**
+- Data loader-klasser: indkapsler fil-læselogik
+- Genanvendelig: én klasse til forskellige filer
+- Adskillelse af ansvar: fil-I/O separat fra forretningslogik
 
-**CSV Format**
-- Comma-Separated Values: simple, widely supported
-- First line often contains headers
-- `skiprows=1` to skip header
-- Multiple columns: use `delimiter=","` and split
+**Grundlæggende datavisualisering**
+- Hvorfor visualisere: se mønstre, trends, outliers og relationer med det samme
+- matplotlib-workflow: `plt.plot()`, `plt.scatter()`, `plt.xlabel()`, `plt.ylabel()`, `plt.title()`, `plt.legend()`, `plt.show()`
+- Plottyper: linjeplots (tidsserier), scatter plots (relationer)
 
-**Combining OOP and File Loading**
-- Data loader classes: encapsulate file reading logic
-- Reusable: one class for different files
-- Separation of concerns: file I/O separate from business logic
+**OOP til datahåndtering**
+- `CSVDataLoader`-klasse: `__init__(filename)`, `load_data()`-metode
+- `Signal`-klasse: `__init__(data, fs, label)`, metoder til plot
+- Fordele: struktur, genanvendelighed, klarhed
 
-**Data Visualization Fundamentals**
-- Why visualize: see patterns, trends, outliers, relationships immediately
-- matplotlib workflow: `plt.plot()`, `plt.scatter()`, `plt.xlabel()`, `plt.ylabel()`, `plt.title()`, `plt.legend()`, `plt.show()`
-- Plot types: line plots (time series), scatter plots (relationships)
+**Etisk overvejelse: Dataminimering og opbevaring**
+- Gem kun nødvendige data; rå biosignaler er følsomme
+- Retention-politikker: hvor længe gemmes data? hvornår slettes de?
+- Backup-strategi: til gendannelse, ikke uendelig opbevaring
+- GDPR: retten til at blive glemt, opbevaringsgrænser
 
-**OOP for Data Handling**
-- `CSVDataLoader` class: `__init__(filename)`, `load_data()` method
-- `Signal` class: `__init__(data, fs, label)`, methods for plotting
-- Benefits: structure, reusability, clarity
 
-**Ethics Consideration: Data Minimization and Retention**
-- Store only necessary data; raw biosignals are sensitive
-- Data retention policies: how long to keep? when to delete?
-- Backup strategy: for recovery, not indefinite retention
-- GDPR: right to be forgotten, retention limits
-
-## Exercise Structure
-- **Exercise 1:** Load simple numeric data from file, print stats
-- **Exercise 2:** CSV with multiple columns (parse patient data)
-- **Exercise 3:** Build DataLoader class for reuse
-- **Exercise 4:** Visualization (scatter plot with formatting)
-- **Exercise 5:** Bonus - extract and save features
-
-## Key Patterns
-- **Pipeline:** `with open() → for line → strip → split → convert → store`
-- **Class-based loading:** `CSVDataLoader` with `load_data()` method
-- **Separation:** file I/O separate from visualization
-- **Reusability:** one loader class for different files
+## Centrale mønstre
+- **Pipeline:** `with open() → for line → strip → split → konvertér → gem`
+- **Klassebaseret indlæsning:** `CSVDataLoader` med `load_data()`-metode
+- **Adskillelse:** fil-I/O separat fra visualisering
+- **Genanvendelighed:** én loader-klasse til forskellige filer
 
 ---
 
-# LECTURE 4: OOP 4 – OOP Integration Workshop
+# FORELÆSNING 4: OOP 4 – OOP-integration workshop
 
-**Folder:** `oop_4_workshop`  
-**Duration:** 4h (0.5h intro + 1.75h exercise 1 + 1.75h exercise 2)  
-**Jupyter Notebook:** `OOP4_workshop.ipynb`
 
-## Workshop Introduction (30 minutes)
+**Mål:** Byg en komplet datapipeline, der integrerer alt fra forelæsning 1-3.
 
-**Goal:** Build a complete data pipeline that integrates everything from lectures 1-3.
+**Det store billede:**
+- **Øvelse 1:** Lav et enhedsovervågningssystem, der læser målinger, gemmer dem i objekter, gemmer til fil og visualiserer
+- **Øvelse 2:** Udvid til multi-enhedsscenarie: indsamling fra flere sensorer, central styring af data, gem og genindlæs med fuld round-trip-validering
 
-**Big Picture:**
-- **Exercise 1:** Create a device monitoring system that reads measurements, stores them in objects, saves to file, and visualizes
-- **Exercise 2:** Extend to multi-device scenario: collect from multiple sensors, manage data centrally, save and reload with full round-trip validation
+**Det du øver:**
+- Design af klasser (forelæsning 2): hvilke data? hvilke metoder? hvordan indkapsle?
+- Objektinteraktion (forelæsning 2): objekter der kalder metoder på andre objekter
+- Fil-I/O (forelæsning 3): læsning af CSV, parsing af data, skrivning af resultater
+- Datavisualisering (forelæsning 1 & 3): matplotlib til at forstå og formidle resultater
+- Komplet workflow: design → implementér → test → visualisér → gem/genindlæs
 
-**What You'll Practice:**
-- Designing classes (lecture 2): what data? what methods? how to encapsulate?
-- Object interaction (lecture 2): objects calling methods on other objects
-- File I/O (lecture 3): reading CSV, parsing data, writing results
-- Data visualization (lectures 1 & 3): matplotlib to understand and communicate results
-- Complete workflow: design → implement → test → visualize → save/reload
-
-**No New Concepts:** Everything you need you learned in lectures 1-3. This is about *integrating* those ideas into a realistic workflow.
+**Ingen nye begreber:** Alt du har brug for, er gennemgået i forelæsning 1-3. Det handler om at *integrere* idéerne i et realistisk workflow.
 
 ---
 
-## Exercise 1: Single Device Monitoring System (1h 45m)
+## Øvelse 1: Overvågningssystem for én enhed (1t 45m)
 
-**Scenario:** You have a heart rate monitor device. Build a system to collect measurements, store them safely, and save them to disk.
+**Scenarie:** Du har en pulsmåler. Byg et system til at indsamle målinger, gemme dem sikkert og gemme til disk.
 
-**Requirements:**
-1. Define a `Measurement` class:
-   - Stores: value, timestamp
-   - Validates: heart rate must be 40-200 bpm (reject invalid data)
-   - Method: `is_valid()` returns True/False
+**Krav:**
+1. Definér en `Measurement`-klasse:
+   - Gemmer: værdi, tidsstempel
+   - Validerer: puls skal være 40-200 bpm (afvis ugyldige data)
+   - Metode: `is_valid()` returnerer True/False
 
-2. Define a `Device` class:
-   - Stores: name, device_id, list of measurements
-   - Methods: `add_measurement(measurement)`, `get_all_measurements()`, `get_stats()` (mean, min, max)
-   - Encapsulation: measurements accessed only through methods, not directly
+2. Definér en `Device`-klasse:
+   - Gemmer: navn, device_id, liste af målinger
+   - Metoder: `add_measurement(measurement)`, `get_all_measurements()`, `get_stats()` (gennemsnit, min, max)
+   - Indkapsling: målinger tilgås kun via metoder, ikke direkte
 
-3. Simulate data collection:
-   - Create device, generate 20 random measurements (some valid, some invalid)
-   - Add only valid measurements to device
-   - Print stats: how many accepted vs rejected?
+3. Simulér dataindsamling:
+   - Opret enhed, generér 20 tilfældige målinger (nogle gyldige, nogle ugyldige)
+   - Tilføj kun gyldige målinger til enheden
+   - Print statistik: hvor mange accepteret vs afvist?
 
-4. Save to file (lecture 3):
-   - Write measurements to CSV: timestamp, value, device_id
-   - Include metadata: device name, number of measurements, collection date
+4. Gem til fil (forelæsning 3):
+   - Skriv målinger til CSV: tidsstempel, værdi, device_id
+   - Medtag metadata: enhedsnavn, antal målinger, indsamlingsdato
 
-5. Load and verify:
-   - Read CSV back into new device
-   - Verify loaded data matches saved data (round-trip test)
+5. Indlæs og verificér:
+   - Læs CSV ind i en ny enhed
+   - Verificér at indlæste data matcher de gemte (round-trip-test)
 
-6. Visualize:
-   - Plot measurements over time
-   - Add mean line and ±1 std band
-   - Label axes, title with device name
+6. Visualisér:
+   - Plot målinger over tid
+   - Tilføj middelværdi-linje og ±1 std-bånd
+   - Label akser, titel med enhedsnavn
 
-**Key Skills Practiced:**
-- Encapsulation: data validation in constructor/methods
-- Object interaction: Device holds Measurement objects
-- File I/O: CSV write and parse
-- Visualization: matplotlib line plot with bands
-
----
-
-## Exercise 2: Multi-Device Data System (1h 45m)
-
-**Scenario:** Hospital has multiple monitors (ECG, PPG, temperature). Build a system to manage all devices, collect data, and enable cross-device analysis.
-
-**Requirements:**
-1. Extend from Exercise 1:
-   - Reuse `Device` and `Measurement` classes (no changes needed)
-   - Create `DataCollector` class (new):
-     - Stores: list of devices
-     - Methods: `add_device(device)`, `add_measurement(device_id, measurement)`, `get_device(device_id)`, `get_all_devices()`
-     - Encapsulation: devices accessed through methods
-
-2. Initialize system:
-   - Create 3 devices: ECG (0-150 bpm), PPG (40-200 bpm), Temperature (35-41°C)
-   - Add to collector
-   - Generate 15-20 measurements per device (mix valid and invalid)
-
-3. Save all data:
-   - Write to single CSV: device_type, device_id, timestamp, value
-   - Metadata file (JSON): device names, ranges, collection date, number of measurements per device
-
-4. Load and verify:
-   - Read CSV and metadata
-   - Reconstruct devices and measurements
-   - Verify no data lost (compare row counts, value ranges)
-
-5. Analyze and visualize:
-   - Subplot: one plot per device (3 subplots)
-   - Each plot: measurements over time with mean and std
-   - Compare: which device has most variation? most rejections?
-
-6. Cross-device insight (bonus):
-   - Correlate any pairs of devices (e.g., does ECG correlate with PPG?)
-   - Plot correlation scatter plot
-
-**Key Skills Practiced:**
-- Object composition: Collector contains Devices; Devices contain Measurements
-- Multiple file operations: CSV data + JSON metadata
-- Parsing and validation: reconstruct from saved data
-- Multi-panel visualization: subplots for comparison
-- Complete pipeline: design → implement → save → load → analyze → visualize
+**Centrale færdigheder:**
+- Indkapsling: datavalidering i konstruktør/metoder
+- Objektinteraktion: Enhed indeholder Måling-objekter
+- Fil-I/O: skriv og parse CSV
+- Visualisering: matplotlib-linjeplot med bånd
 
 ---
 
-## Workshop Learning Outcomes
+## Øvelse 2: Data-system til flere enheder (1t 45m)
 
-By end of exercises, you should be able to:
-- ✓ Design a class hierarchy: what goes in each class?
-- ✓ Use encapsulation: protect data, validate inputs, expose through methods
-- ✓ Implement object interaction: objects calling methods on other objects
-- ✓ Read and write CSV files with proper formatting
-- ✓ Parse structured data from files back into objects
-- ✓ Visualize multiple datasets side-by-side
-- ✓ Build and test a complete end-to-end pipeline
-- ✓ Verify data integrity: save, load, check for data loss
+**Scenarie:** Hospitalet har flere monitorer (EKG, PPG, temperatur). Byg et system til at styre alle enheder, indsamle data og muliggøre tvær-enheds-analyse.
+
+**Krav:**
+1. Udvid fra Øvelse 1:
+   - Genbrug `Device`- og `Measurement`-klasserne (ingen ændringer nødvendige)
+   - Opret `DataCollector`-klasse (ny):
+     - Gemmer: liste af enheder
+     - Metoder: `add_device(device)`, `add_measurement(device_id, measurement)`, `get_device(device_id)`, `get_all_devices()`
+     - Indkapsling: enheder tilgås gennem metoder
+
+2. Initialisér system:
+   - Opret 3 enheder: EKG (0-150 bpm), PPG (40-200 bpm), Temperatur (35-41°C)
+   - Tilføj til collector
+   - Generér 15-20 målinger per enhed (blanding af gyldige og ugyldige)
+
+3. Gem alle data:
+   - Skriv til én CSV: device_type, device_id, tidsstempel, værdi
+   - Metadatafil (JSON): enhedsnavne, intervaller, indsamlingsdato, antal målinger per enhed
+
+4. Indlæs og verificér:
+   - Læs CSV og metadata
+   - Rekonstruér enheder og målinger
+   - Verificér at ingen data er tabt (sammenlign rækkeantal, værdiintervaller)
+
+5. Analysér og visualisér:
+   - Subplot: ét plot per enhed (3 subplots)
+   - Hvert plot: målinger over tid med middelværdi og std
+   - Sammenlign: hvilken enhed har størst variation? flest afvisninger?
+
+6. Tvær-enheds-indsigt (bonus):
+   - Korrelation mellem enheder (fx korrelerer EKG med PPG?)
+   - Plot korrelations-scatter plot
+
+**Centrale færdigheder:**
+- Objektkomposition: Collector indeholder Enheder; Enheder indeholder Målinger
+- Flere filoperationer: CSV-data + JSON-metadata
+- Parsing og validering: rekonstruér fra gemte data
+- Multi-panel-visualisering: subplots til sammenligning
+- Komplet pipeline: design → implementér → gem → indlæs → analysér → visualisér
 
 ---
 
-# LECTURE 5: Signals 1 – Signal Basics, NumPy, and Statistics
+## Workshop-læringsmål
 
-**Folder:** `signals_1`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `signals_1.ipynb`
+Når du er færdig med øvelserne, bør du kunne:
+- Designe et klassehierarki: hvad skal i hver klasse?
+- Bruge indkapsling: beskytte data, validere input, eksponere via metoder
+- Implementere objektinteraktion: objekter der kalder metoder på andre objekter
+- Læse og skrive CSV-filer korrekt
+- Parse strukturerede data fra filer tilbage til objekter
+- Visualisere flere datasæt side om side
+- Bygge og teste en komplet end-to-end pipeline
+- Verificere dataintegritet: gem, indlæs, tjek for datatab
 
-## Primary Topics Covered in Notebook
+---
 
-**Ethics Mini-Topic: ECG as Biometric and Health Data**
-- ECG is unique to individuals (like fingerprints) → re-identification risk
-- ECG reveals latent diseases: arrhythmias, heart attack risk, unknown conditions
-- Permanent health history: once stored, cannot be taken back
-- Scenarios: hospital (diagnostic), wearables (continuous monitoring), research (data sharing)
-- Ethical challenges: informed consent, data minimization, secure storage, responsible use
+# FORELÆSNING 5: Signaler 1 – Signalgrundlag, NumPy og statistik
 
-**Why NumPy?**
-- Python lists are slow: `sum(list)/len(list)` requires loop
-- NumPy is optimized: `np.mean(array)` is vectorized and fast
-- Vectorization: operations on entire arrays without explicit loops
-- Memory efficiency: contiguous memory allocation
+**Etik-mini-tema: EKG som biometrisk og helbredsdata**
+- EKG er unikt for individer (som fingeraftryk) → re-identifikationsrisiko
+- EKG afslører latente sygdomme: arytmier, hjerteanfaldsrisiko, ukendte tilstande
+- Permanent helbredshistorik: når det først er gemt, kan det ikke tages tilbage
+- Scenarier: hospital (diagnostik), wearables (kontinuerlig overvågning), forskning (datadeling)
+- Etiske udfordringer: informeret samtykke, dataminimering, sikker opbevaring, ansvarlig brug
 
-**NumPy Basics**
-- Create arrays: `np.array(list)`, `np.zeros(n)`, `np.ones(n)`, `np.linspace(start, stop, n)`
-- Indexing: `arr[0]`, `arr[-1]`, `arr[1:5]`
-- Slicing with step: `arr[::2]` (every 2nd element)
-- Vectorized operations: `arr + 5`, `arr * 2`, `np.sqrt(arr)`
-- Broadcasting: dimension alignment for operations
-- Functions: `np.mean()`, `np.std()`, `np.min()`, `np.max()`, `np.sum()`
+**Hvorfor NumPy?**
+- Python-lister er langsomme: `sum(list)/len(list)` kræver løkke
+- NumPy er optimeret: `np.mean(array)` er vektoriseret og hurtigt
+- Vektorisering: operationer på hele arrays uden eksplicitte løkker
+- Hukommelseseffektivitet: sammenhængende hukommelsesallokering
 
-**Data Workflow**
-1. Load Data
-2. Inspect (check structure, range, units)
-3. Clean (remove artifacts, missing values)
-4. Visualize (understand patterns)
-5. Extract Features (compute summaries)
-6. Store (save results)
+**NumPy-grundlag**
+- Opret arrays: `np.array(list)`, `np.zeros(n)`, `np.ones(n)`, `np.linspace(start, stop, n)`
+- Indeksering: `arr[0]`, `arr[-1]`, `arr[1:5]`
+- Slicing med step: `arr[::2]` (hver 2. værdi)
+- Vektoriserede operationer: `arr + 5`, `arr * 2`, `np.sqrt(arr)`
+- Broadcasting: dimensionsjustering til operationer
+- Funktioner: `np.mean()`, `np.std()`, `np.min()`, `np.max()`, `np.sum()`
 
-**ECG Physiology**
-- Electrical activity of heart: depolarization and repolarization cycles
-- Main features: P wave (atrial), QRS complex (ventricular), T wave (recovery)
-- **R-peak:** largest deflection in QRS, most recognizable feature
-- **RR interval:** time between consecutive R-peaks (beat-to-beat timing)
-- **Heart rate:** 60 / (RR interval in seconds) = bpm
-- **Sampling rate:** how often signal measured (Hz); affects resolution
+**Data-workflow**
+1. Indlæs data
+2. Inspicér (tjek struktur, range, enheder)
+3. Rens (fjern artefakter, manglende værdier)
+4. Visualisér (forstå mønstre)
+5. Udtræk features (beregn opsummeringer)
+6. Gem (gem resultater)
 
-**Basic Statistics**
-- Mean: average, center of distribution
-- Variance: spread squared
-- Standard deviation (std): square root of variance, spread in same units as data
-- Why statistics matter: establish baseline, detect abnormalities, compare groups
-- NumPy functions: `np.mean()`, `np.var()`, `np.std()`
+**EKG-fysiologi**
+- Elektrisk aktivitet i hjertet: depolariserings- og repolariseringscykler
+- Hovedkomponenter: P-bølge (atrium), QRS-kompleks (ventrikel), T-bølge (recovery)
+- **R-peak:** største udsving i QRS, mest genkendelige feature
+- **RR-interval:** tid mellem to R-peaks (slag-til-slag timing)
+- **Puls:** 60 / (RR-interval i sekunder) = bpm
+- **Sample rate:** hvor ofte signalet måles (Hz); påvirker opløsning
 
-**Peak Detection (Threshold-based)**
-- **Idea:** peaks are high-amplitude points above background
-- **Threshold selection:** `mean + k*std` (k typically 2-3 for clean signals)
-- **Algorithm:** find indices where values exceed threshold
-- Example:
+**Grundlæggende statistik**
+- Middelværdi: gennemsnit, centrum af fordeling
+- Varians: spredning i kvadrat
+- Standardafvigelse (std): kvadratroden af varians, spredning i samme enhed som data
+- Hvorfor statistik betyder noget: etabler baseline, detekter afvigelser, sammenlign grupper
+- NumPy-funktioner: `np.mean()`, `np.var()`, `np.std()`
+
+**Peak-detektion (threshold-baseret)**
+- **Idé:** peaks er høj-amplitude punkter over baggrund
+- **Threshold-valg:** `mean + k*std` (k typisk 2-3 for rene signaler)
+- **Algoritme:** find indekser hvor værdier overstiger threshold
+- Eksempel:
   ```python
   threshold = np.mean(data) + 2 * np.std(data)
-  peaks = np.where(data > threshold)[0]  # indices of peaks
+  peaks = np.where(data > threshold)[0]  # indekser for peaks
   ```
-- **Limitations:** works for clean signals, fails with noise, artifacts, baseline drift
-- **Improvements:** preprocessing (filtering), local maxima (context), validation
+- **Begrænsninger:** virker for rene signaler, fejler ved støj, artefakter, baseline drift
+- **Forbedringer:** præprocessering (filtrering), lokale maxima (kontekst), validering
 
-**Filtering Motivation (mentioned)**
-- Noise sources: electrical interference, motion artifacts, baseline drift
-- Filters remove unwanted components
-- Simple example: moving average smooths signal
+**Motivation for filtrering (nævnt)**
+- Støjkilder: elektrisk interferens, bevægelsesartefakter, baseline drift
+- Filtre fjerner uønskede komponenter
+- Simpelt eksempel: glidende gennemsnit glatter signalet
 
-**Visualization for Inspection**
-- Plot signal with mean and std bands to see noise
-- Visualize statistics with bar plots
-- Histograms show distribution shape
+**Visualisering til inspektion**
+- Plot signalet med middelværdi og std-bånd for at se støj
+- Visualisér statistik med søjlediagrammer
+- Histogrammer viser fordelingsform
 
-**Ethics Consideration: ECG Privacy**
-- Biometric risk: unique patterns enable re-identification
-- Latent information: reveals health conditions subject may not know
-- Permanent record: cannot be "forgotten"
-- Consent and use: data should only be used as agreed
+**Etisk overvejelse: EKG-privatliv**
+- Biometrisk risiko: unikke mønstre muliggør re-identifikation
+- Latent information: afslører helbredstilstande, som personen ikke kender
+- Permanent journal: kan ikke "glemmes"
+- Samtykke og brug: data bør kun bruges som aftalt
 
-## Exercise Structure
-- **Exercise 1:** Inspect random signals (plot 2 signals, compare noise, amplitude, pattern)
-- **Exercise 2:** Extract features from EKG (mean, std, variability)
-- **Exercise 3:** Analyze noisy EKG (filter, extract HR, identify peaks)
-- **Exercise 4:** Extract heart cycles (class-based approach, get specific cycle from signal)
-
-## Key Patterns and Functions
-- **NumPy operations:** vectorized instead of loops
-- **Inspection:** plot + compute stats to understand data
-- **Peak detection:** threshold-based using mean + k*std
-- **Classes:** `HeartRateExtractor` with methods for feature extraction
+## Centrale mønstre og funktioner
+- **NumPy-operationer:** vektoriseret i stedet for løkker
+- **Inspektion:** plot + beregn stats for at forstå data
+- **Peak-detektion:** threshold-baseret med mean + k*std
+- **Klasser:** `HeartRateExtractor` med metoder til feature extraction
 
 ---
 
-# LECTURE 6: Signals 2 – Filtering and Mechanical Signals
+# FORELÆSNING 6: Signaler 2 – Filtrering og mekaniske signaler
 
-**Folder:** `signals_2`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `signals_2_SCG_Filtering_FeatureTiming_v2.ipynb`
+**Etik: Dataproveniens og metadata**
+- Metadata er essentielle: sample rate (fs), enheder, enhed/model, kalibrering, protokol
+- Uden metadata: kan man ikke tolke eller verificere analysen
+- Metadataintegritet: korrupte metadata gør resultater ugyldige
+- Transparens: dokumentér alle processing-trin
+- Audit trails: hvem gjorde hvad, hvornår, med hvilke parametre (compliance/ansvarlighed)
 
-## Primary Topics Covered in Notebook
+**Etik: Håndtering af følsomme helbredsdata (GDPR/Dansk lov)**
+- Formål: definér før behandling
+- Retsgrundlag: hvorfor er dette lovligt?
+- Eksterne services: hvis cloud bruges, kræves databehandleraftale
+- Adgangskontrol: mindst mulige rettigheder, ingen offentlige links
+- Kryptering: i hvile og under transport
+- Opbevaring & sletning: slet når formålet er opfyldt
+- DPIA (Data Impact Assessment): kræves ved højrisiko-behandling
 
-**Ethics: Data Provenance and Metadata**
-- Metadata is essential: sampling rate (fs), units, device/model, calibration, protocol
-- Without metadata: cannot interpret or verify analysis
-- Metadata integrity: corrupted metadata invalidates results
-- Transparency: document all processing steps
-- Audit trails: who did what, when, with which parameters (compliance/accountability)
+**Hvorfor filtrering?**
+- Reelle signaler indeholder støj: 50/60 Hz elektrisk, bevægelsesartefakter, baseline drift
+- Filtre fjerner uønskede komponenter og bevarer interesse-signal
+- Trade-offs: udglatning reducerer støj men dæmper peaks; faseeffekter
 
-**Ethics: Handling Sensitive Health Data (GDPR/Danish Law)**
-- Formål (purpose): define before processing
-- Retsgrundlag (legal basis): why is this legal?
-- External services: if using cloud, need data processor agreement
-- Adgangskontrol (access control): least privilege, no public links
-- Kryptering (encryption): at rest and in transit
-- Opbevaring & sletning (retention): delete when purpose ends
-- DPIA (Data Impact Assessment): required for high-risk processing
-
-**Why Filtering?**
-- Real signals contain noise: 50/60 Hz electrical, motion artifacts, baseline drift
-- Filters remove unwanted components, preserve signal of interest
-- Trade-offs: smoothing reduces noise but also reduces peaks; phase effects
-
-**Moving Average Filter**
-- Simple: take average of window around each point
-- Algorithm:
+**Glidende gennemsnitsfilter**
+- Simpelt: tag gennemsnit af vindue omkring hvert punkt
+- Algoritme:
   ```python
   def moving_average_filter(data, window):
       smoothed = np.zeros_like(data)
@@ -481,586 +426,522 @@ By end of exercises, you should be able to:
           smoothed[i] = np.mean(data[start:end])
       return smoothed
   ```
-- Removes high-frequency noise but smooths peaks
-- Window size determines how much smoothing
+- Fjerner højfrekvent støj men glatter peaks
+- Vinduesstørrelse bestemmer hvor meget glatning der sker
 
-**SciPy Signal Processing**
-- `scipy.signal.butter()`: design Butterworth filter
-- `scipy.signal.filtfilt()`: zero-phase filtering (no time shift)
-- Filter types: lowpass, highpass, bandpass, bandstop
-- Example:
+**SciPy signalbehandling**
+- `scipy.signal.butter()`: design af Butterworth-filter
+- `scipy.signal.filtfilt()`: nul-fase filtrering (ingen tidsforskydning)
+- Filtertyper: lowpass, highpass, bandpass, bandstop
+- Eksempel:
   ```python
   b, a = butter(2, 20, fs=fs, btype='lowpass')
   filtered = filtfilt(b, a, signal)
   ```
 
-**PCG/SCG Physiology**
-- **PCG:** Phonocardiography (heart sounds from stethoscope)
-- **SCG:** Seismocardiography (mechanical vibrations from heartbeat)
-- Frequency content: 50 Hz < audio < 20,000 Hz; cardiac sounds 20-300 Hz
-- **S₁ (Lub):** first heart sound when mitral/tricuspid valves close, marks systole start
-- **S₂ (Dub):** second heart sound when aortic/pulmonic valves close, marks diastole start
-- Timing: S₁ → S₂ is systole (short), S₂ → next S₁ is diastole (long)
+**PCG/SCG-fysiologi**
+- **PCG:** Fonokardiografi (hjertelyde fra stetoskop)
+- **SCG:** Seismokardiografi (mekaniske vibrationer fra hjerteslag)
+- Frekvensindhold: 50 Hz < audio < 20.000 Hz; hjertelyde 20-300 Hz
+- **S₁ (Lub):** første hjertelyd når mitral-/trikuspidalklapper lukker, markerer systolens start
+- **S₂ (Dub):** anden hjertelyd når aorta-/pulmonalklapper lukker, markerer diastolens start
+- Timing: S₁ → S₂ er systole (kort), S₂ → næste S₁ er diastole (lang)
 
-**Envelope Extraction**
-- Purpose: highlight amplitude variations (where the important events are)
-- Algorithm:
-  1. Remove mean
-  2. Rectify (absolute value)
-  3. Moving maximum over window
-  4. Add mean back
-- Used to detect S₁ and S₂ by finding peaks in envelope
+**Envelope-udtrækning**
+- Formål: fremhæve amplitudevariationer (hvor de vigtige hændelser er)
+- Algoritme:
+  1. Fjern middelværdi
+  2. Rektificér (absolutværdi)
+  3. Glidende maksimum over vindue
+  4. Tilføj middelværdi tilbage
+- Bruges til at detektere S₁ og S₂ ved at finde peaks i Envelopeen
 
-**Peak Detection in Envelope**
-- Use `scipy.signal.find_peaks()` with parameters:
-  - `height=np.std(envelope)`: minimum peak height
-  - `distance=int(0.15*fs)`: minimum distance between peaks
-- Returns indices of detected peaks
+**Peak-detektion i Envelope**
+- Brug `scipy.signal.find_peaks()` med parametre:
+  - `height=np.std(envelope)`: minimum peak-højde
+  - `distance=int(0.15*fs)`: minimum distance mellem peaks
+- Returnerer indekser for detekterede peaks
 
-**S₁/S₂ Classification**
-- Based on intervals between peaks:
-  - **S₁:** comes after long pause (diastole)
-  - **S₂:** comes after short pause (systole)
-- Physiological rule:
+**S₁/S₂-klassifikation**
+- Baseret på intervaller mellem peaks:
+  - **S₁:** kommer efter lang pause (diastole)
+  - **S₂:** kommer efter kort pause (systole)
+- Fysiologisk regel:
   ```
   IF interval[i] < interval[i+1]:
-      peak[i] is S₁
+      peak[i] er S₁
   ELSE:
-      peak[i] is S₂
+      peak[i] er S₂
   ```
 
-**Validation via Histograms**
-- Plot intervals between detected peaks
-- S₁ intervals (systole) should be shorter
-- S₂ intervals (diastole) should be longer
-- Histogram shows if classification makes sense
+**Validering via histogrammer**
+- Plot intervaller mellem detekterede peaks
+- S₁-intervaller (systole) bør være kortere
+- S₂-intervaller (diastole) bør være længere
+- Histogram viser om klassifikationen giver mening
 
-**Data Workflow for SCG/PCG**
-1. Load data
-2. Inspect (plot, check fs, units)
-3. Clean (filter with appropriate parameters)
-4. Visualize (with subplots, multiple signals)
-5. Extract features (envelope, peak detection)
-6. Classify (S₁ vs S₂ using timing rules)
-7. Validate (histograms, visual inspection)
-8. Store (save results with metadata)
+**Data-workflow for SCG/PCG**
+1. Indlæs data
+2. Inspicér (plot, tjek fs, enheder)
+3. Rens (filtrér med passende parametre)
+4. Visualisér (med subplots, flere signaler)
+5. Udtræk features (Envelope, peak-detektion)
+6. Klassificér (S₁ vs S₂ med timing-regler)
+7. Validér (histogrammer, visuel inspektion)
+8. Gem (gem resultater med metadata)
 
-## Exercise Structure
-- **Exercise 1:** Load and plot ECG + PCG (inspect quality)
-- **Exercise 2:** Moving average filter (choose window size, discuss parameter trade-offs)
-- **Exercise 3:** Understand PCG (heart sounds, what is S₁/S₂)
-- **Exercise 4:** Extract envelope from PCG
-- **Exercise 5:** Detect peaks in envelope
-- **Exercise 6:** Classify S₁ vs S₂ using intervals
-- **Exercise 7:** Validate with histograms
-- **Bonus Exercise:** Use ECG R-peaks to improve SCG classification
-
-## Key Patterns
-- **Filtering:** Butterworth zero-phase (filtfilt)
-- **Feature extraction:** envelope then peak detection
-- **Classification:** physiological rules based on timing
-- **Validation:** histograms to verify results make sense
-- **Metadata:** always document fs, filter parameters, thresholds
+## Centrale mønstre
+- **Filtrering:** Butterworth nul-fase (filtfilt)
+- **Feature extraction:** Envelope → peak-detektion
+- **Klassifikation:** fysiologiske regler baseret på timing
+- **Validering:** histogrammer for at sikre at resultater giver mening
+- **Metadata:** dokumentér altid fs, filterparametre, thresholds
 
 ---
 
-# LECTURE 7: Signals 3 – Feature Engineering, PPG and Regression
+# FORELÆSNING 7: Signaler 3 – Feature engineering, PPG og regression
 
-**Folder:** `signals_3`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `signals_3.ipynb`
 
-## Primary Topics Covered in Notebook
+**Hvad er en feature?**
+- Definition: funktion $f(signal)$ der mapper data til et tal (eller få tal)
+- Mål: opsummere *relevant* information og ignorere støj
+- Kvalitetskriterier:
+  - **Fortolkelig:** kan forklares fysiologisk
+  - **Robust:** ændrer sig ikke drastisk ved små artefakter
+  - **Reproducerbar:** samme data + samme pipeline = samme tal
+  - **Brugbar:** hjælper med at besvare et konkret spørgsmål
 
-**What Is a Feature?**
-- Definition: function f(signal) that maps data to a number (or few numbers)
-- Goal: opsummere *relevant* information and ignore noise
-- Quality criteria:
-  - **Fortolkelig** (interpretable): can explain physiologically
-  - **Robust:** doesn't change drastically with small artifacts
-  - **Reproducerbar** (reproducible): same data + same pipeline = same number
-  - **Brugbar** (useful): helps answer concrete question
+**Feature vs filter**
+- **Filter:** signal → signal (ændrer signalet, fjerner støj)
+- **Feature:** signal/beat → tal (opsummerer, skaber tabel)
+- Feature er et "informationsfilter" der bevarer relevant og kasserer resten
 
-**Feature vs Filter**
-- **Filter:** signal → signal (changes signal, removes noise)
-- **Feature:** signal/beat → number (summarizes, creates table)
-- Feature is an "information filter" that keeps relevant, discards rest
+**Syntetisk eksempel: amplitude, periode, fase**
+- Simpel sinus: $A\sin(2\pi f t + \varphi)$
+- 3 features definerer signalet fuldt: amplitude $A$, frekvens $f$, fase $\varphi$
+- Viser at få tal kan beskrive komplekse signaler
 
-**Synthetic Example: Amplitude, Period, Phase**
-- Simple sinusoid: A*sin(2πf*t + φ)
-- 3 features fully define the signal: amplitude A, frequency f, phase φ
-- Demonstrates: few numbers can capture complex signal
-
-**PPG Physiology**
-- **Photoplethysmography:** light absorption by blood volume changes
-- Why PPG: portable (fingertip, wrist), non-invasive, easy to measure, widely available
-- Signal dominated by arterial blood pulsations
-- Properties vary with: perfusion (blood flow), arterial pressure, motion, sensor contact
+**PPG-fysiologi**
+- **Fotopletysmografi:** lysabsorption ved ændringer i blodvolumen
+- Hvorfor PPG: portabel (finger, håndled), non-invasiv, nem at måle, udbredt
+- Signal domineret af arterielle blodpulser
+- Egenskaber varierer med: perfusion (blodflow), arterietryk, bevægelse, sensorkontakt
 - **Pulse landmarks:**
-  - **Foot:** pulse start (systolic rise beginning)
-  - **Systolic peak:** maximum (highest blood volume)
-  - **Dicrotic notch:** secondary peak (aortic valve closure)
+  - **Foot:** pulsstart (begyndelse af systolisk stigning)
+  - **Systolic peak:** maksimum (højeste blodvolumen)
+  - **Dicrotic notch:** sekundært peak (aortaklappens lukning)
 
-**Feature Types**
-- **Beat-level:** amplitude (peak - foot), rise time (foot → peak), width, area
-- **Interval-level:** RR interval, IBI (inter-beat interval), timing
-- **Aggregated:** mean HR, HRV (heart rate variability), artifact percentage
-- **Contextual:** depends on state (posture, activity, time of day)
-- **Derived:** combine features (e.g., HR from RR, contractility index)
+**Feature-typer**
+- **Beat-niveau:** amplitude (peak - foot), rise time (foot → peak), bredde, areal
+- **Interval-niveau:** RR-interval, IBI (inter-beat interval), timing
+- **Aggregerede:** gennemsnitlig HR, HRV (heart rate variability), artefakt-procent
+- **Kontekstuelle:** afhænger af tilstand (stilling, aktivitet, tidspunkt)
+- **Afledte:** kombinerede features (fx HR fra RR, kontraktilitetsindeks)
 
-**Feature Extraction Pipeline**
-1. Load and inspect: check units, fs, missing values
-2. Filter/smooth: optional preprocessing to improve peak detection
-3. Segment into beats: find pulse onsets (foot) and peaks
-4. Compute features per beat: amplitude, rise time, etc.
-5. Quality control: flag bad beats (low amplitude, irregular, artifacts)
-6. Aggregate: build feature table (one row per beat)
-7. Save with metadata: enable reproducibility
+**Feature-extraction pipeline**
+1. Indlæs og inspicér: tjek enheder, fs, manglende værdier
+2. Filtrér/glat: valgfri præprocessering for bedre peak-detektion
+3. Segmentér i beats: find pulse onset (foot) og peaks
+4. Beregn features per beat: amplitude, rise time osv.
+5. Kvalitetskontrol: flag dårlige beats (lav amplitude, uregelmæssigheder, artefakter)
+6. Aggreger: byg feature-tabel (én række per beat)
+7. Gem med metadata: sikr reproducerbarhed
 
-**Difference Between Feature and Filter**
-- **Filter** output is a signal (waveform)
-- **Feature** output is a number (or vector)
-- Example: low-pass filter makes PPG smoother; amplitude feature extracts single number per beat
+**Forskel på feature og filter**
+- **Filter**-output er et signal (waveform)
+- **Feature**-output er et tal (eller vektor)
+- Eksempel: low-pass filter gør PPG glattere; amplitude-feature udtrækker ét tal per beat
 
-**Variation and Error Bars**
-- **Standard deviation (SD):** spread in your measurements (how variable beats are)
-- **Standard error (SEM):** uncertainty on mean (SEM = SD/√n)
-- **95% confidence interval (CI):** plausible range for true mean
-- Good practice: show both data points and error bars; discuss what they mean
+**Variation og error bars**
+- **Standard deviation (SD):** spredning i målinger (hvor variable beats er)
+- **Standard error (SEM):** usikkerhed på middelværdi (SEM = SD/√n)
+- **95% confidence interval (CI):** plausibelt interval for sand middelværdi
+- God praksis: vis både datapunkter og error bars; forklar hvad de betyder
 
-**Introduction to pandas**
-- Why DataFrame: structured data, named columns, clear semantics, easy analysis
-- One row per beat, columns = features: intuitive for beat-level data
-- Creating: `pd.DataFrame(list_of_dicts)` or `pd.DataFrame(dict_of_lists)`
-- Operations: `.describe()` (summary stats), `.isna()` (missing), `.to_csv()` (save)
+**Introduktion til pandas**
+- Hvorfor DataFrame: strukturerede data, navngivne kolonner, klar semantik, nem analyse
+- Én række per beat, kolonner = features: intuitivt for beat-niveau data
+- Oprettelse: `pd.DataFrame(list_of_dicts)` eller `pd.DataFrame(dict_of_lists)`
+- Operationer: `.describe()` (opsummeringsstatistik), `.isna()` (manglende), `.to_csv()` (gem)
 
-**Linear Regression**
-- Motivation: does one variable predict another? (e.g., does HR relate to PPG amplitude?)
-- Fitting: find line y = mx + b minimizing squared errors
-- Implementation: `sklearn.linear_model.LinearRegression()` or `scipy.stats.linregress()`
-- Evaluation:
-  - **R²:** 0 = no relationship, 1 = perfect fit
-  - **Residuals:** differences from line (should be random)
-- Interpretation: slope (rate of change), intercept (baseline), R² (strength)
-- Limits: correlation ≠ causation, extrapolation unreliable
+**Lineær regression**
+- Motivation: forudsiger en variabel en anden? (fx relaterer HR til PPG-amplitude?)
+- Fitting: find linje $y = mx + b$ der minimerer kvadrerede fejl
+- Implementering: `sklearn.linear_model.LinearRegression()` eller `scipy.stats.linregress()`
+- Evaluering:
+  - **R²:** 0 = ingen relation, 1 = perfekt fit
+  - **Residualer:** forskel mellem line og data (bør være tilfældig)
+- Fortolkning: hældning (ændringshastighed), skæring (baseline), R² (styrke)
+- Begrænsninger: korrelation ≠ kausalitet, ekstrapolation er usikker
 
-**Data Schema and Metadata**
-- Column naming: descriptive, consistent, include units
-- Identity fields: subject ID, session, timestamp
-- Metadata file: fs, filter parameters, analysis date, analyst
-- Versioning: schema version, pipeline version, software versions
-- Reproducibility: metadata enables replication
+**Data-skema og metadata**
+- Kolonnenavne: beskrivende, konsistente, inkluder enheder
+- Identitetsfelter: subject ID, session, tidsstempel
+- Metadatafil: fs, filterparametre, analysedato, analytiker
+- Versionering: skema-version, pipeline-version, software-versioner
+- Reproducerbarhed: metadata muliggør gentagelse
 
-**Ethics Consideration: Privacy by Design**
-- Store features, not raw signals: reduces sensitivity and storage
-- Raw PPG enables re-identification (unique patterns); features are less identifying
-- Pseudonymize IDs: no names, hospital IDs, or direct identifiers
-- Metadata governance: what to capture (reproducibility), what to retain (compliance), when to delete
-- Access control: who sees features? raw data? metadata?
-- Consent: use data only as subject agreed
+**Etisk overvejelse: Privacy by design**
+- Gem features, ikke rå signaler: reducerer følsomhed og lagring
+- Rå PPG muliggør re-identifikation (unikke mønstre); features er mindre identificerende
+- Pseudonymiser IDs: ingen navne, hospitals-ID'er eller direkte identifikatorer
+- Metadata governance: hvad skal indfanges (reproducerbarhed), hvad skal gemmes (compliance), hvornår slettes
+- Adgangskontrol: hvem ser features? rå data? metadata?
+- Samtykke: brug data kun som aftalt
 
-## Exercise Structure
-- **Exercise 1:** Define features for PPG (plan 3-5 features, discuss robustness)
-- **Exercise 2:** Beat detection and quality checks (flag artifacts, low amplitude)
-- **Exercise 3:** Extract features (IBI, HR, amplitude, rise time, etc.)
-- **Exercise 4:** Build DataFrame and save (CSV + JSON metadata)
-
-## Key Patterns
-- **Feature:** summarize beat into numbers
-- **Quality:** flag bad beats before computing features
-- **Schema:** clear columns, metadata for reproducibility
-- **Privacy:** store features, not raw signal
+## Centrale mønstre
+- **Feature:** opsummerer beat til tal
+- **Kvalitet:** flag dårlige beats før features beregnes
+- **Skema:** klare kolonner, metadata til reproducerbarhed
+- **Privatliv:** gem features, ikke rå signal
 
 ---
 
-# LECTURE 8: Signals 4 – Integration Workshop
+# FORELÆSNING 8: Signaler 4 – Integrationsworkshop
 
-**Folder:** `signals_4_workshop`  
-**Duration:** 4h (2h exercise 1 + 2h exercise 2)
+Dette er en 2-øvelses workshop, der integrerer signalbehandling (forelæsning 5-7) med OOP-design (forelæsning 1-4):
 
-## Workshop Structure
+### **Øvelse 1 (2t): "Komplet signalanalyse-pipeline"**
 
-This is a 2-exercise workshop that integrates signal processing (lectures 5-7) with OOP design (lectures 1-4):
+**Scenarie:** Givet rå EKG-, PCG- og PPG-datafiler, byg et komplet signalbehandlings-workflow: indlæs, filtrér, udtræk features, validér og gem resultater.
 
-### **Exercise 1 (2h): "Complete Signal Analysis Pipeline"**
+**Opgaver:**
+1. Indlæs flere signaler fra CSV-filer (forelæsning 3)
+2. Visualisér rå signaler (forelæsning 5): inspicér kvalitet, støj, artefakter
+3. Anvend filtrering (forelæsning 6): brug Butterworth eller glidende gennemsnit til at rense signaler
+4. Udtræk features (forelæsning 7):
+   - EKG: detekter R-peaks, beregn puls
+   - PCG: udtræk Envelope, detekter S₁/S₂-hændelser
+   - PPG: udtræk beat-level features (amplitude, rise time)
+5. Byg feature-tabel (forelæsning 7): én række per beat/hændelse, kolonner = features
+6. Validér resultater (forelæsning 6): histogrammer, sammenligning med rå signaler, tjek outliers
+7. Gem med metadata: features til CSV, metadata (fs, filterparametre, datoer) til JSON
 
-**Scenario:** Given raw ECG, PCG, and PPG data files, build a complete signal processing workflow: load, filter, extract features, validate, save results.
+**Leverancer:**
+- Plots der viser rå → filtreret → features for hver signaltype
+- Feature-CSV med validerede resultater
+- Metadata-JSON der dokumenterer alle parametre
+- Kort analyse: hvilke mønstre ser du? Hvad kan gå galt?
 
-**Tasks:**
-1. Load multiple signals from CSV files (lecture 3)
-2. Visualize raw signals (lecture 5): inspect quality, noise, artifacts
-3. Apply filtering (lecture 6): use Butterworth or moving average to clean signals
-4. Extract features (lecture 7):
-   - ECG: detect R-peaks, compute heart rate
-   - PCG: extract envelope, detect S₁/S₂ events
-   - PPG: extract beat-level features (amplitude, rise time)
-5. Build feature table (lecture 7): one row per beat/event, columns = features
-6. Validate results (lecture 6): histograms, comparison to raw signals, check for outliers
-7. Save with metadata: features to CSV, metadata (fs, filter params, dates) to JSON
-
-**Deliverables:**
-- Plots showing raw → filtered → features for each signal type
-- Feature CSV with validated results
-- Metadata JSON documenting all parameters
-- Brief analysis: what patterns do you see? What might go wrong?
-
-**Skills Practiced:**
-- File I/O and data parsing (lecture 3)
-- Signal visualization and inspection (lecture 5)
-- Filtering and envelope extraction (lecture 6)
-- Feature extraction and quality control (lecture 7)
-- Metadata and reproducibility (lecture 7)
+**Øvede færdigheder:**
+- Fil-I/O og dataparsing (forelæsning 3)
+- Signal-visualisering og inspektion (forelæsning 5)
+- Filtrering og Envelope-udtrækning (forelæsning 6)
+- Feature extraction og kvalitetskontrol (forelæsning 7)
+- Metadata og reproducerbarhed (forelæsning 7)
 
 ---
 
-### **Exercise 2 (2h): "Refactoring into OOP Design"**
+### **Øvelse 2 (2t): "Refaktorering til OOP-design"**
 
-**Scenario:** Take your working signal analysis code from Exercise 1 and refactor it into well-designed OOP classes. Build reusable, testable components.
+**Scenarie:** Tag din fungerende signalanalyse-kode fra Øvelse 1 og refaktorér den til vel-designede OOP-klasser. Byg genanvendelige, testbare komponenter.
 
-**Requirements:**
-1. Design signal processing classes (lecture 2):
-   - `Signal` class: stores data, fs, metadata; methods for plotting, filtering, feature extraction
-   - `ECGAnalyzer` class: specialized for ECG (peak detection, HR computation)
-   - `PCGAnalyzer` class: specialized for PCG (envelope, S₁/S₂ detection)
-   - `PPGAnalyzer` class: specialized for PPG (beat detection, feature extraction)
+**Krav:**
+1. Design signalbehandlingsklasser (forelæsning 2):
+   - `Signal`-klasse: gemmer data, fs, metadata; metoder til plot, filtrering, feature extraction
+   - `ECGAnalyzer`-klasse: specialiseret til EKG (peak-detektion, HR-beregning)
+   - `PCGAnalyzer`-klasse: specialiseret til PCG (Envelope, S₁/S₂-detektion)
+   - `PPGAnalyzer`-klasse: specialiseret til PPG (beat-detektion, feature extraction)
 
-2. Implement encapsulation (lecture 2):
-   - Private attributes: `_raw_data`, `_filtered_data`
-   - Public methods: `filter()`, `extract_features()`, `get_stats()`
-   - Validation in constructors: check fs, units, data range
+2. Implementér indkapsling (forelæsning 2):
+   - Private attributter: `_raw_data`, `_filtered_data`
+   - Offentlige metoder: `filter()`, `extract_features()`, `get_stats()`
+   - Validering i konstruktører: tjek fs, enheder, dataområde
 
-3. File I/O with OOP (lecture 3):
-   - `SignalLoader` class: load CSV, return Signal objects
-   - `FeatureSaver` class: write features and metadata to files
-   - Separation of concerns: I/O logic separate from analysis
+3. Fil-I/O med OOP (forelæsning 3):
+   - `SignalLoader`-klasse: indlæs CSV, returnér Signal-objekter
+   - `FeatureSaver`-klasse: skriv features og metadata til filer
+   - Adskillelse af ansvar: I/O-logik separat fra analyse
 
-4. Refactor your Exercise 1 code:
-   - Instead of: load → for loop → filter → extract → save
-   - Use: loader.load() → analyzer.filter() → analyzer.extract_features() → saver.save()
+4. Refaktorér din Øvelse 1-kode:
+   - I stedet for: indlæs → for-løkke → filtrér → udtræk → gem
+   - Brug: loader.load() → analyzer.filter() → analyzer.extract_features() → saver.save()
 
-5. Test and verify:
-   - Run analysis using OOP classes
-   - Verify results match Exercise 1 (same features, same metadata)
-   - Document class interfaces (what methods, parameters, return types)
+5. Test og verificér:
+   - Kør analyse med OOP-klasser
+   - Verificér at resultater matcher Øvelse 1 (samme features, samme metadata)
+   - Dokumentér klasse-interfaces (hvilke metoder, parametre, returtyper)
 
-**Deliverables:**
-- Python module with Signal, ECGAnalyzer, PCGAnalyzer, PPGAnalyzer classes
-- Updated analysis script using OOP (shorter, clearer than Exercise 1)
-- Verification: same results as Exercise 1, demonstrated side-by-side
-- Brief reflection: advantages of OOP approach? Disadvantages? When would you use this?
+**Leverancer:**
+- Python-modul med Signal-, ECGAnalyzer-, PCGAnalyzer-, PPGAnalyzer-klasser
+- Opdateret analysescript med OOP (kortere, klarere end Øvelse 1)
+- Verifikation: samme resultater som Øvelse 1, vist side om side
+- Kort refleksion: fordele ved OOP? Ulemper? Hvornår vil du bruge det?
 
-**Skills Practiced:**
-- Class design and encapsulation (lecture 2)
-- Object interaction: analyzer methods call other methods (lecture 2)
-- File I/O with object-oriented approach (lecture 3)
-- Functions as building blocks (lecture 1)
-- Refactoring: taking working code and improving structure (lectures 1-4)
-
----
-
-## Workshop Learning Outcomes
-
-By end of exercises, you should be able to:
-- ✓ Build complete signal processing workflows from raw data to validated features
-- ✓ Apply filtering, feature extraction, and validation techniques from lectures 5-7
-- ✓ Design reusable classes that encapsulate signal processing logic
-- ✓ Separate concerns: load (I/O) → analyze (processing) → save (I/O)
-- ✓ Document APIs: what methods exist, what inputs/outputs, what assumptions
-- ✓ Refactor working code into cleaner, more maintainable OOP structure
-- ✓ Verify that refactoring produces identical results (no bugs introduced)
-- ✓ Appreciate OOP: modularity, reusability, testability
+**Øvede færdigheder:**
+- Klassedesign og indkapsling (forelæsning 2)
+- Objektinteraktion: analyzers der kalder andre metoder (forelæsning 2)
+- Fil-I/O med objektorienteret tilgang (forelæsning 3)
+- Funktioner som byggesten (forelæsning 1)
+- Refaktorering: tag fungerende kode og forbedr struktur (forelæsning 1-4)
 
 ---
 
-# LECTURE 9: Linear Regression with Population Data
+## Workshop-læringsmål
 
-**Folder:** `populations_data_1`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `populations_1.ipynb`
+Når du er færdig med øvelserne, bør du kunne:
+- Bygge komplette signalbehandlings-workflows fra rå data til validerede features
+- Anvende filtrering, feature extraction og valideringsteknikker fra forelæsning 5-7
+- Designe genanvendelige klasser der indkapsler signalbehandlingslogik
+- Adskille ansvar: indlæsning (I/O) → analyse (processing) → gem (I/O)
+- Dokumentere API'er: hvilke metoder findes, inputs/outputs, antagelser
+- Refaktorere fungerende kode til renere, mere vedligeholdbar OOP-struktur
+- Verificere at refaktorering giver identiske resultater (ingen fejl introduceret)
+- Værdsætte OOP: modularitet, genanvendelighed, testbarhed
 
-## Primary Topics Covered in Notebook
+---
 
-**Linear Regression Review and Extension**
-- Recap from signals_3: fit line y = mx + b to minimize squared errors
-- Now applied to multi-subject population data (one row per subject)
-- Why regression at population scale: predict outcomes, understand relationships, identify risk factors
+# FORELÆSNING 9: Lineær regression med populationsdata
 
-**Preparing Population Data**
-- One row per subject, one column per feature/measurement
-- Missing data: handle with pandas (`dropna()`, `fillna()`)
-- Outliers: identify and decide (remove or investigate)
-- Normalization: scale features if on different ranges
 
-**Model Fitting and Evaluation**
+**Lineær regression – repetition og udvidelse**
+- Opsamling fra signals_3: fit linjen $y = mx + b$ ved at minimere kvadrerede fejl
+- Nu anvendt på populationsdata med flere individer (én række per person)
+- Hvorfor regression på populationsniveau: forudsige udfald, forstå relationer, identificere risikofaktorer
+
+**Forberedelse af populationsdata**
+- Én række per person, én kolonne per feature/måling
+- Manglende data: håndter med pandas (`dropna()`, `fillna()`)
+- Outliers: identificér og beslut (fjern eller undersøg)
+- Normalisering: skaler features hvis de har forskellige ranges
+
+**Model-fit og evaluering**
 - Fit: `LinearRegression().fit(X, y)`
-- Predictions: `y_pred = model.predict(X)`
-- Metrics:
-  - **R²:** proportion of variance explained (0=no fit, 1=perfect)
-  - **RMSE (Root Mean Squared Error):** average prediction error in original units
-  - **Residuals:** differences between observed and predicted
-- Interpretation: slope (effect size), intercept (baseline)
+- Forudsigelser: `y_pred = model.predict(X)`
+- Metrikker:
+  - **R²:** andel af varians forklaret (0=ingen fit, 1=perfekt fit)
+  - **RMSE (Root Mean Squared Error):** gennemsnitlig fejl i originale enheder
+  - **Residualer:** forskelle mellem observerede og forudsagte
+- Fortolkning: hældning (effektstørrelse), skæring (baseline)
 
-**Validation and Residuals**
-- Plot residuals vs predicted: should be random scatter (no pattern = good fit)
-- Histogram of residuals: should be roughly normal
-- Q-Q plot: residuals vs normal distribution
-- Non-random residuals indicate model is missing something (non-linear relationship, missing variables, subgroups)
+**Validering og residualer**
+- Plot residualer vs forudsagte: bør være tilfældig spredning (ingen mønster = godt fit)
+- Histogram af residualer: bør være omtrent normal
+- Q-Q-plot: residualer vs normalfordeling
+- Ikke-tilfældige residualer indikerer at modellen mangler noget (ikke-lineær relation, manglende variabler, subgrupper)
 
-**Multiple Features (Multiple Linear Regression)**
-- Use multiple columns as predictors: `X = df[['age', 'weight', 'activity']]`
-- Fit and interpret: each coefficient is the effect of that feature holding others constant
-- Multicollinearity: if features correlate strongly, coefficients become unstable
-- Feature selection: which features matter? (correlation, backwards elimination, domain knowledge)
+**Flere features (multiple lineær regression)**
+- Brug flere kolonner som prædiktorer: `X = df[['age', 'weight', 'activity']]`
+- Fit og fortolkning: hver koefficient er effekten af en feature, når de andre holdes konstante
+- Multikollinearitet: hvis features korrelerer stærkt, bliver koefficienter ustabile
+- Feature selection: hvilke features betyder noget? (korrelation, baglæns elimination, domæneviden)
 
-**Prediction and Uncertainty**
-- Point estimate: `y_pred = model.predict(X_new)`
-- Confidence intervals: plausible range around prediction (larger for extrapolation)
-- Limitations: don't extrapolate far beyond training data range
+**Forudsigelse og usikkerhed**
+- Punktestimat: `y_pred = model.predict(X_new)`
+- Konfidensintervaller: plausibelt interval omkring forudsigelse (større ved ekstrapolation)
+- Begrænsninger: ekstrapolér ikke langt uden for træningsdata-området
 
-**Reproducibility with Metadata**
-- Record: feature names, feature units, fit date, analyst, software versions
-- Save model for reuse: `pickle.dump(model, open('model.pkl', 'wb'))`
-- Document assumptions: linearity, independence, normality of residuals
+**Reproducerbarhed med metadata**
+- Registrér: feature-navne, enheder, fit-dato, analytiker, software-versioner
+- Gem model til genbrug: `pickle.dump(model, open('model.pkl', 'wb'))`
+- Dokumentér antagelser: linearitet, uafhængighed, normalitet af residualer
 
-## Exercise Structure
-- **Exercise 1:** Load population data, explore with scatter plots and correlations
-- **Exercise 2:** Fit simple linear regression (1 predictor), evaluate R², RMSE
-- **Exercise 3:** Visualize residuals, check assumptions
-- **Exercise 4:** Multiple linear regression (2+ predictors), compare models
-- **Exercise 5:** Prediction on new subjects, discuss confidence
-
-## Key Patterns
-- Prepare data: clean, check for missing/outliers
-- Fit model: visualize data first
-- Evaluate: R², RMSE, residuals tell the story
-- Validate assumptions: residual plots are diagnostic
-- Document: metadata for reproducibility
+## Centrale mønstre
+- Forbered data: rens, tjek manglende/outliers
+- Fit model: visualisér data først
+- Evaluer: R², RMSE, residualer fortæller historien
+- Validér antagelser: residualplots er diagnostiske
+- Dokumentér: metadata for reproducerbarhed
 
 ---
 
-# LECTURE 10: Data Visualization and Unsupervised Learning
+# FORELÆSNING 10: Datavisualisering og unsupervised læring
 
-**Folder:** `populations_data_2`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `populations_2.ipynb`
+**Hvorfor visualisering for populationsdata?**
+- Tidsserier er mindre nyttige: populationsdata er tværsnitsdata (mange personer, ét tidspunkt pr. person)
+- Opsummeringsstatistik skjuler struktur: visualisering afslører mønstre, Clusterr, outliers
+- Exploratory Data Analysis (EDA): forstå før modellering
 
-## Primary Topics Covered in Notebook
+**Grundlæggende visualisering**
+- **Scatter plot:** to kontinuerte variable; se korrelation, outliers, Clusterr
+- **Fordelingsplot (histogram):** én variabel; se form, center, spredning, skævhed
+- **Box plot:** fordeling pr. gruppe; sammenlign median og spredning på tværs af kategorier
+- **Bar plot:** kategoriske data; sammenlign antal eller gennemsnit
 
-**Why Visualization for Population Data?**
-- Time series less useful: population data is cross-sectional (many subjects, one timepoint per subject)
-- Summary statistics alone hide structure: visualization reveals patterns, clusters, outliers
-- Exploratory Data Analysis (EDA): understand before modeling
+**Matplotlib og Seaborn basics**
+- matplotlib: lav-niveau kontrol, `plt.scatter()`, `plt.hist()`, `plt.plot()`
+- seaborn: high-level, pænere defaults, `sns.scatterplot()`, `sns.histplot()`, `sns.boxplot()`
+- Subplots: `fig, ax = plt.subplots(1, 2)` til flere plots
+- Tilpasning: labels, legend, titler, farver
 
-**Visualization Fundamentals**
-- **Scatter plot:** two continuous variables; see correlation, outliers, clusters
-- **Distribution plot (histogram):** one variable; see shape, center, spread, skewness
-- **Box plot:** distribution by groups; compare medians and spread across categories
-- **Bar plot:** categorical data; compare counts or means
+**Når tidsserier IKKE giver mening**
+- Tidsserier antager data sorteret efter tid (EKG-samples, signaler)
+- Populationsdata: rækkefølge er irrelevant (personer er uafhængige)
+- Visualisering af populationsdata som tidsserier: misvisende trends, falske mønstre
+- Rette tilgang: scatter plots, histogrammer, box plots (rækkefølge-uafhængig)
 
-**Matplotlib and Seaborn Basics**
-- matplotlib: low-level control, `plt.scatter()`, `plt.hist()`, `plt.plot()`
-- seaborn: high-level, prettier defaults, `sns.scatterplot()`, `sns.histplot()`, `sns.boxplot()`
-- Subplots: `fig, ax = plt.subplots(1, 2)` to create multiple plots
-- Customization: labels, legends, titles, colors
+**unsupervised læring: introduktion**
+- Mål: find struktur i data uden labels
+- Anvendelser: opdage subgrupper, detektere anomalier, komprimering
+- Forskellig fra supervised: ingen ground truth labels at fitte til
 
-**When Time Series DON'T Make Sense**
-- Time series assumes data ordered by time (ECG samples, signals)
-- Population data: order irrelevant (subjects independent)
-- Visualizing population data as time series: misleading trends, false patterns
-- Right approach: scatter plots, histograms, box plots (order-independent)
+**k-Means clustering**
+- Idé: opdel data i k Clusterr ved at minimere varians inden for Clusterr
+- Algoritme:
+  1. Initialisér k tilfældige Clustercentre
+  2. Tildel hvert punkt til nærmeste center
+  3. Opdatér centre som middel af tildelte punkter
+  4. Gentag indtil konvergens
+- Valg af k: elbow plot (varians inden for Clusterr vs k), domæneviden
+- Implementering: `sklearn.cluster.KMeans(n_clusters=3).fit(X)`
 
-**Unsupervised Learning: Introduction**
-- Goal: find structure in unlabeled data
-- Applications: discover subgroups, detect anomalies, compression
-- Different from supervised: no ground truth labels to fit to
+**Iris-datasæt**
+- Klassisk datasæt: 150 blomster, 4 features (sepal length/width, petal length/width)
+- 3 arter (setosa, versicolor, virginica)
+- Hvorfor iris til clustering: visualiserbar (brug 2 features), kendt ground truth til validering, fortolkelig
+- Clustering uden at bruge arts-labels: unsupervised udfordring
 
-**k-Means Clustering**
-- Idea: partition data into k clusters minimizing within-cluster variance
-- Algorithm:
-  1. Initialize k random cluster centers
-  2. Assign each point to nearest center
-  3. Update centers to mean of assigned points
-  4. Repeat until convergence
-- Choosing k: elbow plot (within-cluster variance vs k), domain knowledge
-- Implementation: `sklearn.cluster.KMeans(n_clusters=3).fit(X)`
+**Visualisering af Cluster**
+- Scatter plot med farver efter Clustertildeling
+- Feature-par: plot (feature1, feature2) med Clusterfarver
+- Sammenlign med sande labels: silhouette score, purity
+- Silhouette-koefficient: -1 (dårlig), 0 (på grænsen), +1 (vel-Clustert)
 
-**Iris Dataset**
-- Classic dataset: 150 flowers, 4 features (sepal length/width, petal length/width)
-- 3 species (setosa, versicolor, virginica)
-- Why iris for clustering: visualizable (use 2 features), known ground truth for validation, interpretable
-- Clustering without using species label: unsupervised challenge
+**Clusterfortolkning**
+- Hvad repræsenterer Clusterrne? Beregn gennemsnits-features pr. Cluster
+- Er Clusterrne meningsfulde? Tjek om de er sammenhængende (biologisk, statistisk)
+- Stabilitet: genkør med forskellige initialiseringer (k-means er tilfældig)
 
-**Visualizing Clusters**
-- Scatter plot with colors by cluster assignment
-- Feature pairs: plot (feature1, feature2) with cluster colors
-- Compare to true labels: silhouette score, purity
-- Silhouette coefficient: -1 (bad), 0 (on boundary), +1 (well-clustered)
-
-**Cluster Interpretation**
-- What do clusters represent? Compute mean features per cluster
-- Are clusters meaningful? Check if coherent (biologically, statistically)
-- Stability: rerun with different initializations (k-means is random)
-
-## Exercise Structure
-- **Exercise 1:** Load iris, explore with histograms and scatter plots
-- **Exercise 2:** Visualize 2D projections (different feature pairs)
-- **Exercise 3:** Why time series doesn't work (plot as time series to see nonsense)
-- **Exercise 4:** Apply k-means with k=3, visualize clusters
-- **Exercise 5:** Try different k values, use elbow plot to find "best" k
-- **Exercise 6:** Compute silhouette scores, interpret cluster quality
-
-## Key Patterns
-- EDA: visualize before modeling
-- Scatter plots: see correlations and clusters
-- Histograms: understand distributions
-- Unsupervised: no labels, discover patterns
-- k-means: partition data into k groups
+## Centrale mønstre
+- EDA: visualisér før modellering
+- Scatter plots: se korrelationer og Clusterr
+- Histogrammer: forstå fordelinger
+- unsupervised: ingen labels, opdag mønstre
+- k-means: opdel data i k grupper
 
 ---
 
-# LECTURE 11: Supervised Learning – Classification
+# FORELÆSNING 11: Supervised learning – klassifikation
 
-**Folder:** `populations_data_3`  
-**Duration:** 4h (2h lecture + 2h exercises)  
-**Jupyter Notebook:** `populations_3.ipynb`
+**Supervised vs unsupervised**
+- **Supervised:** har ground truth labels, lærer at forudsige nye labels
+- **unsupervised:** ingen labels, opdager struktur
+- Denne forelæsning: supervised klassifikation (forudsige diskrete kategorier)
 
-## Primary Topics Covered in Notebook
-
-**Supervised vs Unsupervised**
-- **Supervised:** have ground truth labels, learn to predict new labels
-- **Unsupervised:** no labels, discover structure
-- This lecture: supervised classification (predict discrete categories)
-
-**Classification Problem**
-- Goal: given features (X), predict class label (y)
-- Examples: iris species from measurements, patient disease from biomarkers, signal quality (good/bad)
-- Outputs: predicted class, confidence/probability of each class
+**Klassifikationsproblem**
+- Mål: givet features (X), forudsige klasselabel (y)
+- Eksempler: iris-arter fra målinger, patientsygdom fra biomarkører, signalkvalitet (god/dårlig)
+- Outputs: forudsagt klasse, confidence/sandsynlighed pr. klasse
 
 **k-Nearest Neighbors (k-NN)**
-- Idea: a point's class is determined by its k nearest neighbors
-- Algorithm:
-  1. Store all training data
-  2. For new point, find k closest points (by distance, typically Euclidean)
-  3. Predict: majority class among those k neighbors
-- Choosing k: small k = flexible but noisy, large k = smooth but may underfit; typically 3-10
-- Implementation: `sklearn.neighbors.KNeighborsClassifier(n_neighbors=5).fit(X_train, y_train)`
+- Idé: et punkt klassificeres ud fra de k nærmeste naboer
+- Algoritme:
+  1. Gem alle træningsdata
+  2. For nyt punkt, find k nærmeste (afstand, typisk euklidisk)
+  3. Forudsig: flertalsklasse blandt de k naboer
+- Valg af k: lille k = fleksibel men støjfølsom, stor k = glat men kan underfite; typisk 3-10
+- Implementering: `sklearn.neighbors.KNeighborsClassifier(n_neighbors=5).fit(X_train, y_train)`
 
-**Distance and Feature Scaling**
-- k-NN depends on distance: features with large ranges dominate
-- Solution: normalize/standardize features
-  - **Standardization:** (x - mean) / std (mean=0, std=1)
-  - **Normalization:** (x - min) / (max - min) (range 0-1)
-- `sklearn.preprocessing.StandardScaler()` for easy scaling
-- Always fit scaler on training data, apply to test data
+**Afstand og feature-skalering**
+- k-NN afhænger af afstand: features med store ranges dominerer
+- Løsning: normaliser/standardisér features
+  - **Standardisering:** (x - mean) / std (mean=0, std=1)
+  - **Normalisering:** (x - min) / (max - min) (range 0-1)
+- `sklearn.preprocessing.StandardScaler()` til nem skalering
+- Fit altid scaler på træningsdata, anvend på testdata
 
-**Train-Test Split**
-- Never evaluate on training data: memorization, not generalization
-- Split: 70-80% train, 20-30% test
-- Random split to avoid order bias
+**Train-test split**
+- Evaluer aldrig på træningsdata: memorering, ikke generalisering
+- Split: 70-80% træning, 20-30% test
+- Random split for at undgå rækkefølge-bias
 - `sklearn.model_selection.train_test_split()`
 
-**Model Evaluation**
-- **Accuracy:** (correct predictions) / (total predictions)
+**Modelevaluering**
+- **Accuracy:** (korrekte forudsigelser) / (samlede forudsigelser)
 - **Confusion matrix:** true positives, false positives, true negatives, false negatives
-- **Precision:** TP / (TP + FP) — of positive predictions, how many correct?
-- **Recall:** TP / (TP + FN) — of true positives, how many found?
-- **F1-score:** harmonic mean of precision and recall
-- Choose metric based on cost: medical diagnosis (recall), spam detection (precision)
+- **Precision:** TP / (TP + FP) — af positive forudsigelser, hvor mange er korrekte?
+- **Recall:** TP / (TP + FN) — af sande positive, hvor mange findes?
+- **F1-score:** harmonisk gennemsnit af precision og recall
+- Vælg metric ud fra omkostning: medicinsk diagnose (recall), spam-detektion (precision)
 
-**Visualization: Decision Boundaries**
-- Plot 2D features (or 2D PCA projection) with colored regions
-- Each region is a predicted class
-- k-NN boundaries are local and wiggly (non-linear)
-- Shows how classifier carves up feature space
+**Visualisering: beslutningsgrænser**
+- Plot 2D-features (eller 2D PCA-projektion) med farvede regioner
+- Hver region er en forudsagt klasse
+- k-NN-grænser er lokale og ujævne (ikke-lineære)
+- Viser hvordan klassifikatoren opdeler feature space
 
-**Overfitting and Generalization**
-- Overfitting: model memorizes training data, fails on new data (high training accuracy, low test accuracy)
-- k-NN overfitting: very small k (k=1 memorizes)
-- Solution: cross-validation to find good k
+**Overfitting og generalisering**
+- Overfitting: model memoriserer træningsdata, fejler på nye data (høj træningsaccuracy, lav testaccuracy)
+- k-NN-overfitting: meget lille k (k=1 memoriserer)
+- Løsning: krydsvalidering for at finde god k
 
-**Cross-Validation**
-- k-fold cross-validation: split data into k folds, train k times (leave one fold out each time)
-- Evaluate on left-out fold, average results
-- More stable estimate than single train-test split
+**Krydsvalidering**
+- k-fold cross-validation: split data i k folds, træn k gange (én fold holdes ude hver gang)
+- Evaluer på den udeladte fold, gennemsnit resultater
+- Mere stabilt estimat end enkelt train-test split
 - `sklearn.model_selection.cross_val_score()`
 
-**Iris Classification with k-NN**
-- Train on iris features, predict species
-- Compare predicted to true labels
-- Visualize: 2D projections with decision boundaries
-- Confusion matrix: which species confused with which?
+**Iris-klassifikation med k-NN**
+- Træn på iris-features, forudsig arter
+- Sammenlign forudsigelser med sande labels
+- Visualisér: 2D-projektioner med beslutningsgrænser
+- Confusion matrix: hvilke arter forveksles med hvilke?
 
-## Exercise Structure
-- **Exercise 1:** Train k-NN on iris with different k values
-- **Exercise 2:** Use train-test split, evaluate accuracy
-- **Exercise 3:** Scale features, observe improvement
-- **Exercise 4:** Visualize decision boundaries
-- **Exercise 5:** Compute confusion matrix and precision/recall
-- **Exercise 6:** Use cross-validation to select best k
 
-## Key Patterns
-- Supervised: use labels to train
-- k-NN: simple, requires scaled features
-- Train-test split: prevent overfitting
-- Evaluate: accuracy, precision, recall, confusion matrix
-- Cross-validate: stable model selection
+## Centrale mønstre
+- Supervised: brug labels til træning
+- k-NN: simpelt, kræver skalerede features
+- Train-test split: forebyg overfitting
+- Evaluér: accuracy, precision, recall, confusion matrix
+- Krydsvalidering: stabil modelvalg
 
 ---
 
-# LECTURE 12: Data Integration Workshop
+# FORELÆSNING 12: Data-integration workshop
 
-**Folder:** `populations_data_4_workshop`  
-**Duration:** 4h (1h lecture + 3h workshop)
 
-## Workshop Structure
+Dette er en integrerende workshop, der anvender begreber fra forelæsning 9-11 uden at introducere nye emner.
 
-This is an integrative workshop applying concepts from lectures 9-11 without introducing new topics.
+### **Øvelse 1 (1t 30m): "Fra features til forudsigelser"**
 
-### **Exercise 1 (1h 30m): "From Features to Predictions"**
+**Scenarie:** Givet et populationsdatasæt med flere features og en target-variabel, byg en end-to-end analyse-pipeline.
 
-**Scenario:** Given a population dataset with multiple features and a target variable, build an end-to-end analysis pipeline.
+**Opgaver:**
+- Indlæs data og udforsk med visualiseringer (histogrammer, scatter plots fra forelæsning 10)
+- Rens data (håndtér manglende værdier, outliers)
+- Fit lineær regressionsmodel til at forudsige kontinuerligt udfald (forelæsning 9)
+- Evaluer med R², RMSE, residualplots
+- Dokumentér analysen: metoder, fund, begrænsninger
 
-**Tasks:**
-- Load data and explore with visualizations (histograms, scatter plots from lecture 10)
-- Clean data (handle missing values, outliers)
-- Fit linear regression model to predict continuous outcome (lecture 9 technique)
-- Evaluate with R², RMSE, residual plots
-- Document analysis: methods, findings, limitations
+**Integrations-elementer:**
+- Visualiseringsvalg fra forelæsning 10 informerer feature selection
+- Regressionsmodel fra forelæsning 9 forudsiger target
+- Metadata og reproducerbarhed hele vejen igennem
 
-**Integration elements:**
-- Visualization choices from lecture 10 inform feature selection
-- Regression model from lecture 9 predicts target
-- Metadata and reproducibility throughout
+---
 
-### **Exercise 2 (1h 30m): "Unsupervised Discovery and Supervised Prediction"**
+### **Øvelse 2 (1t 30m): "unsupervised opdagelse og supervised forudsigelse"**
 
-**Scenario:** Given iris or similar population dataset, combine clustering and classification.
+**Scenarie:** Givet iris- eller lignende populationsdatasæt, kombiner clustering og klassifikation.
 
-**Tasks:**
-- Apply k-means clustering (lecture 10) to discover groups without using labels
-- Visualize clusters (scatter plots from lecture 10)
-- Train k-NN classifier (lecture 11) to predict species/groups from features
-- Compare: do k-NN predictions match k-means clusters?
-- Evaluate k-NN with train-test split, confusion matrix, cross-validation (lecture 11)
-- Discuss: when would unsupervised (clustering) be useful vs supervised (k-NN)?
+**Opgaver:**
+- Anvend k-means clustering (forelæsning 10) til at opdage grupper uden labels
+- Visualisér Clusterr (scatter plots fra forelæsning 10)
+- Træn k-NN-klassifikator (forelæsning 11) til at forudsige arter/grupper fra features
+- Sammenlign: matcher k-NN-forudsigelser k-means-Clusterr?
+- Evaluer k-NN med train-test split, confusion matrix, krydsvalidering (forelæsning 11)
+- Diskutér: hvornår er unsupervised (clustering) nyttigt vs supervised (k-NN)?
 
-**Integration elements:**
-- Visualization (lecture 10) shows cluster structure
-- Clustering (lecture 10) finds natural groupings
-- Classification (lecture 11) predicts group membership
-- Cross-validation ensures generalization
+**Integrations-elementer:**
+- Visualisering (forelæsning 10) viser Clusterstruktur
+- Clustering (forelæsning 10) finder naturlige grupper
+- Klassifikation (forelæsning 11) forudsiger gruppetilhørsforhold
+- Krydsvalidering sikrer generalisering
 
-### **Workshop Themes**
-- **Pipeline:** load → visualize → clean → model → evaluate → document
-- **Visualization:** informs understanding and feature selection
-- **Unsupervised:** discovers structure (clustering from lecture 10)
-- **Supervised:** predicts with known labels (classification from lecture 11, regression from lecture 9)
-- **Reproducibility:** document methods, parameters, software versions
-- **Interpretation:** what do results mean? Limitations? Next steps?
+---
 
-## Key Outcomes
-- Hands-on experience with full data analysis workflow
-- Integration of regression, clustering, and classification
-- Practice with visualization for decision-making
-- Reproducibility and documentation habits
-- Reflection on method choices
+## Workshop-temaer
+
+- **Pipeline:** indlæs → visualisér → rens → modellér → evaluer → dokumentér
+- **Visualisering:** informerer forståelse og feature selection
+- **unsupervised:** opdager struktur (clustering fra forelæsning 10)
+- **Supervised:** forudsiger med labels (klassifikation fra forelæsning 11, regression fra forelæsning 9)
+- **Reproducerbarhed:** dokumentér metoder, parametre, software-versioner
+- **Fortolkning:** hvad betyder resultaterne? Begrænsninger? Næste skridt?
+
+## Centrale resultater
+- Hands-on erfaring med fuld dataanalyse-workflow
+- Integration af regression, clustering og klassifikation
+- Øvelse i visualisering til beslutningstagning
+- Reproducerbarhed og dokumentationsvaner
+- Refleksion over metodevalg
