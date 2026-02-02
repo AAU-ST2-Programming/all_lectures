@@ -762,26 +762,6 @@ By end of exercises, you should be able to:
 
 ---
 
-# SUMMARY: LECTURES 1-8
-
-**Programming Progression:**
-- Lectures 1-4: OOP foundation (syntax, classes, files, inheritance)
-- Lectures 5-8: Signal processing (NumPy, filtering, features, integration)
-
-**Ethical Themes Throughout:**
-- Data governance: consent, minimization, access control
-- Privacy: biometric risk, re-identification, security
-- Transparency: document decisions, metadata, audit trails
-- Responsibility: consider consequences, design safeguards
-
-**Practical Skills:**
-- Working with real data from files
-- Signal processing: filtering, envelope, peak detection
-- Feature extraction and schema design
-- Reflection and ethical analysis
-
----
-
 # LECTURE 9: Linear Regression with Population Data
 
 **Folder:** `populations_data_1`  
