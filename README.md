@@ -11,15 +11,15 @@ Overview of 12 lectures covering foundational programming, object-oriented desig
 | 1 | Hello C and Python | oop_1 | 4h | Programming languages, basic syntax, environment setup |
 | 2 | Objects, Encapsulation, Interaction | oop_2 | 4h | Classes, methods, data encapsulation, object interaction |
 | 3 | Files and Data Loading | oop_3 | 4h | File I/O, CSV parsing, combining OOP with data |
-| 4 | Advanced OOP | oop_4_workshop | 4h | Inheritance, polymorphism, abstract classes, design patterns |
+| 4 | Integration Workshop | oop_4_workshop | 4h | Integration of OOP, file I/O, visualization; device monitoring systems |
 | 5 | Signal Basics | signals_1 | 4h | ECG physiology, statistics, peak detection |
 | 6 | Filtering and Mechanical Signals | signals_2 | 4h | Filtering, SCG physiology, mechanical timing, envelope extraction |
 | 7 | Feature Engineering, PPG and Regression | signals_3 | 4h | Feature definition, PPG physiology, linear regression, variation metrics |
 | 8 | Signal Integration and Ethics | signals_4_workshop | 4h | Multimodal integration, signal workflow reflection, ethical analysis |
-| 9 | Population Data Basics | populations_data_1 | 4h | Multi-subject datasets, distributions |
-| 10 | Statistical Analysis and Inference | populations_data_2 | 4h | Descriptive statistics, hypothesis testing, confidence intervals |
-| 11 | Regression and Predictive Models | populations_data_3 | 4h | Linear regression, model validation, feature selection |
-| 12 | Data Integration and Communication | populations_data_4_workshop | 4h | End-to-end analysis, reproducibility, results communication |
+| 9 | Linear Regression with Population Data | populations_data_1 | 4h | Linear regression, model validation, residuals |
+| 10 | Data Visualization and Unsupervised Learning | populations_data_2 | 4h | Data visualization, distributions, scatter plots, k-means clustering (Iris dataset) |
+| 11 | Supervised Learning: Classification | populations_data_3 | 4h | k-NN classification, decision boundaries, model evaluation |
+| 12 | Data Integration Workshop | populations_data_4_workshop | 4h | End-to-end analysis: regression, clustering, classification, reproducibility, communication |
 
 ---
 
@@ -211,87 +211,127 @@ Foundation for Python programming: understand syntax, use debugger, practice wit
 
 ---
 
-# LECTURE 4: OOP 4 – Advanced OOP, Inheritance and Polymorphism
+# LECTURE 4: OOP 4 – Integration Workshop
 
 **Folder:** `oop_4_workshop`  
-**Duration:** 4h (2h lecture + 2h exercises)  
+**Duration:** 4h (0.5h intro + 1.75h exercise 1 + 1.75h exercise 2)  
 **Jupyter Notebook:** `OOP4_workshop.ipynb`
 
-## Primary Topics Covered in Notebook
+## Workshop Introduction (30 minutes)
 
-**Workshop Focus: From Device to File**
-- Goal: build program that reads data, stores in memory, writes to disk
-- Roles: Reader (source), DataHandler (memory), Saver (disk)
-- Real workflow: data → structure → analysis → visualization → results
+**Goal:** Build a complete data pipeline that integrates everything from lectures 1-3.
 
-**Inheritance Motivation**
-- **Problem:** similar classes (Patient, Doctor, Nurse, Sensor, Device) share structure
-- **Solution:** base class with shared attributes/methods, derived classes specialize
-- Example: `Person` base class (name, age), `Patient`, `Doctor` inherit
-- Use case: medical device hierarchy
+**Big Picture:**
+- **Exercise 1:** Create a device monitoring system that reads measurements, stores them in objects, saves to file, and visualizes
+- **Exercise 2:** Extend to multi-device scenario: collect from multiple sensors, manage data centrally, save and reload with full round-trip validation
 
-**UML Class Diagrams (Design Tool)**
-- Visual representation of classes, attributes, methods, and relationships
-- Class box: name (top), attributes (middle), methods (bottom)
-- `+` means public, `-` means private
-- Arrows show relationships and dependencies
-- Top-down layout shows hierarchy
+**What You'll Practice:**
+- Designing classes (lecture 2): what data? what methods? how to encapsulate?
+- Object interaction (lecture 2): objects calling methods on other objects
+- File I/O (lecture 3): reading CSV, parsing data, writing results
+- Data visualization (lectures 1 & 3): matplotlib to understand and communicate results
+- Complete workflow: design → implement → test → visualize → save/reload
 
-**Flowcharts (Process Tool)**
-- Ovals: start/stop
-- Rectangles: actions/processes
-- Diamonds: decisions (yes/no)
-- Arrows: flow and SequenceObject
-- Purpose: visualize how program executes step-by-step
+**No New Concepts:** Everything you need you learned in lectures 1-3. This is about *integrating* those ideas into a realistic workflow.
 
-**Serial Communication and Data Streaming**
-- Data from devices comes as continuous stream, not file
-- `pyserial` library: `ser = serial.Serial(port, baudrate, timeout)`
-- `ser.readline()`: returns bytes, stops at `\n` or timeout
-- Must convert: `text = line.decode().strip()`
-- Must validate: check for empty, non-numeric, invalid data
-- Always close: `ser.close()`
+---
 
-**Design Pattern: Reader → Handler → Saver**
-- **USBReader:** reads from serial port, knows only about serial, returns raw data
-- **DataHandler:** holds data in memory (list), provides `add_value()`, `get_all()`
-- **DataSaver:** writes data to disk (CSV, JSON), knows only about files
-- **Benefits:** clear separation, easy to test, easy to extend
+## Exercise 1: Single Device Monitoring System (1h 45m)
 
-**Encapsulation Revisited**
-- No global variables: data only in objects
-- Each class has one responsibility
-- Indirect access: don't modify handler data directly, use `add_value()` method
+**Scenario:** You have a heart rate monitor device. Build a system to collect measurements, store them safely, and save them to disk.
 
-**Flowchart Example (from notebook)**
-```
-Start → Read data from USB → Store data in memory → Check {Enough data?}
-  No → Read data from USB
-  Yes → Save data to file → End
-```
+**Requirements:**
+1. Define a `Measurement` class:
+   - Stores: value, timestamp
+   - Validates: heart rate must be 40-200 bpm (reject invalid data)
+   - Method: `is_valid()` returns True/False
 
-**Ethics Consideration: Serial Data and Health Data**
-- Serial data is often health-related (sensors, devices)
-- GDPR: health data is "special category" (restricted)
-- Metadata is critical: sampling rate, device type, protocol, timing
-- Data minimization: store only necessary features, not raw streams
-- Security: access control, encryption, audit trails
+2. Define a `Device` class:
+   - Stores: name, device_id, list of measurements
+   - Methods: `add_measurement(measurement)`, `get_all_measurements()`, `get_stats()` (mean, min, max)
+   - Encapsulation: measurements accessed only through methods, not directly
 
-## Exercise Structure (Not detailed in notebook, but referenced)
-- Design class hierarchy (inheritance)
-- Implement Reader, Handler, Saver classes
-- Use UML diagrams to plan architecture
-- Implement serial reading with validation
-- Build end-to-end workflow
+3. Simulate data collection:
+   - Create device, generate 20 random measurements (some valid, some invalid)
+   - Add only valid measurements to device
+   - Print stats: how many accepted vs rejected?
 
-## Key Concepts
-- **Inheritance:** base classes, derived classes, `super()`
-- **Polymorphism:** different objects, same interface (all readers have `read()`)
-- **Design patterns:** Strategy, Observer, Factory
-- **UML:** visual design before coding
-- **Flowcharts:** step-by-step logic
-- **Encapsulation:** single responsibility, no globals
-- **Design:** clear separation of concerns (Reader/Handler/Saver)
+4. Save to file (lecture 3):
+   - Write measurements to CSV: timestamp, value, device_id
+   - Include metadata: device name, number of measurements, collection date
+
+5. Load and verify:
+   - Read CSV back into new device
+   - Verify loaded data matches saved data (round-trip test)
+
+6. Visualize:
+   - Plot measurements over time
+   - Add mean line and ±1 std band
+   - Label axes, title with device name
+
+**Key Skills Practiced:**
+- Encapsulation: data validation in constructor/methods
+- Object interaction: Device holds Measurement objects
+- File I/O: CSV write and parse
+- Visualization: matplotlib line plot with bands
+
+---
+
+## Exercise 2: Multi-Device Data System (1h 45m)
+
+**Scenario:** Hospital has multiple monitors (ECG, PPG, temperature). Build a system to manage all devices, collect data, and enable cross-device analysis.
+
+**Requirements:**
+1. Extend from Exercise 1:
+   - Reuse `Device` and `Measurement` classes (no changes needed)
+   - Create `DataCollector` class (new):
+     - Stores: list of devices
+     - Methods: `add_device(device)`, `add_measurement(device_id, measurement)`, `get_device(device_id)`, `get_all_devices()`
+     - Encapsulation: devices accessed through methods
+
+2. Initialize system:
+   - Create 3 devices: ECG (0-150 bpm), PPG (40-200 bpm), Temperature (35-41°C)
+   - Add to collector
+   - Generate 15-20 measurements per device (mix valid and invalid)
+
+3. Save all data:
+   - Write to single CSV: device_type, device_id, timestamp, value
+   - Metadata file (JSON): device names, ranges, collection date, number of measurements per device
+
+4. Load and verify:
+   - Read CSV and metadata
+   - Reconstruct devices and measurements
+   - Verify no data lost (compare row counts, value ranges)
+
+5. Analyze and visualize:
+   - Subplot: one plot per device (3 subplots)
+   - Each plot: measurements over time with mean and std
+   - Compare: which device has most variation? most rejections?
+
+6. Cross-device insight (bonus):
+   - Correlate any pairs of devices (e.g., does ECG correlate with PPG?)
+   - Plot correlation scatter plot
+
+**Key Skills Practiced:**
+- Object composition: Collector contains Devices; Devices contain Measurements
+- Multiple file operations: CSV data + JSON metadata
+- Parsing and validation: reconstruct from saved data
+- Multi-panel visualization: subplots for comparison
+- Complete pipeline: design → implement → save → load → analyze → visualize
+
+---
+
+## Workshop Learning Outcomes
+
+By end of exercises, you should be able to:
+- ✓ Design a class hierarchy: what goes in each class?
+- ✓ Use encapsulation: protect data, validate inputs, expose through methods
+- ✓ Implement object interaction: objects calling methods on other objects
+- ✓ Read and write CSV files with proper formatting
+- ✓ Parse structured data from files back into objects
+- ✓ Visualize multiple datasets side-by-side
+- ✓ Build and test a complete end-to-end pipeline
+- ✓ Verify data integrity: save, load, check for data loss
 
 ---
 
@@ -623,55 +663,102 @@ Start → Read data from USB → Store data in memory → Check {Enough data?}
 
 ---
 
-# LECTURE 8: Signals 4 – Signal Integration and Ethics
+# LECTURE 8: Signals 4 – Integration Workshop
 
 **Folder:** `signals_4_workshop`  
-**Duration:** 4h (1h lecture + 3h workshop)
+**Duration:** 4h (2h exercise 1 + 2h exercise 2)
 
-## Workshop Structure (Not detailed in provided notebook, but implied from lecture_content)
+## Workshop Structure
 
-This is a 2-exercise workshop focused on reflection and ethical analysis:
+This is a 2-exercise workshop that integrates signal processing (lectures 5-7) with OOP design (lectures 1-4):
 
-### **Exercise 1 (2h): "From Raw Data to Clinical Insights: Documenting Your Analysis Journey"**
+### **Exercise 1 (2h): "Complete Signal Analysis Pipeline"**
 
-**Scenario:** You've extracted features from multimodal signals (ECG, SCG, PPG). Now communicate your work to clinicians, engineers, and patients.
+**Scenario:** Given raw ECG, PCG, and PPG data files, build a complete signal processing workflow: load, filter, extract features, validate, save results.
 
-**Create a narrative document explaining:**
-- What you measured: describe signals, sampling rates, physiological meaning
-- Design choices: justify filtering strategy, feature selection, parameter choices
-- Validation: how did you verify results? Do detected events make physiological sense?
-- Limitations: what could go wrong? What assumptions did you make?
-- Metadata and reproducibility: what would someone need to replicate?
+**Tasks:**
+1. Load multiple signals from CSV files (lecture 3)
+2. Visualize raw signals (lecture 5): inspect quality, noise, artifacts
+3. Apply filtering (lecture 6): use Butterworth or moving average to clean signals
+4. Extract features (lecture 7):
+   - ECG: detect R-peaks, compute heart rate
+   - PCG: extract envelope, detect S₁/S₂ events
+   - PPG: extract beat-level features (amplitude, rise time)
+5. Build feature table (lecture 7): one row per beat/event, columns = features
+6. Validate results (lecture 6): histograms, comparison to raw signals, check for outliers
+7. Save with metadata: features to CSV, metadata (fs, filter params, dates) to JSON
 
-**Ethical reflection:**
-- Privacy considerations and how you addressed them
-- Potential misuse and safeguards
-- Populations where methods might fail
+**Deliverables:**
+- Plots showing raw → filtered → features for each signal type
+- Feature CSV with validated results
+- Metadata JSON documenting all parameters
+- Brief analysis: what patterns do you see? What might go wrong?
 
-### **Exercise 2 (2h): "Building a Responsible Biosignal Analysis System"**
+**Skills Practiced:**
+- File I/O and data parsing (lecture 3)
+- Signal visualization and inspection (lecture 5)
+- Filtering and envelope extraction (lecture 6)
+- Feature extraction and quality control (lecture 7)
+- Metadata and reproducibility (lecture 7)
 
-**Scenario:** Design a wearable system that monitors PPG and computes HRV, syncs to smartphone and cloud.
+---
 
-**Design document addressing:**
-- Architecture: what data stored locally vs cloud? What transmitted?
-- Privacy: minimize re-identification risk while enabling research
-- Transparency: what does user see? How communicate limitations?
-- Equity: works for different skin tones? Different body types? Different activity levels?
-- Consent and control: what can users opt in/out of?
-- Accountability: detect misuse? What audit trails?
+### **Exercise 2 (2h): "Refactoring into OOP Design"**
 
-**Critical thinking:**
-- Tensions between goals (accuracy vs privacy, convenience vs security)
-- Designer responsibility
-- Potential harms
-- Who benefits vs who harmed
+**Scenario:** Take your working signal analysis code from Exercise 1 and refactor it into well-designed OOP classes. Build reusable, testable components.
 
-## Key Themes
-- Integration: multimodal signals reveal complementary information
-- Reflection: why we made design choices, limitations
-- Ethics throughout pipeline: collection → storage → processing → analysis → dissemination
-- Responsibility: acknowledge consequences, design safeguards
-- Communication: explain to different audiences
+**Requirements:**
+1. Design signal processing classes (lecture 2):
+   - `Signal` class: stores data, fs, metadata; methods for plotting, filtering, feature extraction
+   - `ECGAnalyzer` class: specialized for ECG (peak detection, HR computation)
+   - `PCGAnalyzer` class: specialized for PCG (envelope, S₁/S₂ detection)
+   - `PPGAnalyzer` class: specialized for PPG (beat detection, feature extraction)
+
+2. Implement encapsulation (lecture 2):
+   - Private attributes: `_raw_data`, `_filtered_data`
+   - Public methods: `filter()`, `extract_features()`, `get_stats()`
+   - Validation in constructors: check fs, units, data range
+
+3. File I/O with OOP (lecture 3):
+   - `SignalLoader` class: load CSV, return Signal objects
+   - `FeatureSaver` class: write features and metadata to files
+   - Separation of concerns: I/O logic separate from analysis
+
+4. Refactor your Exercise 1 code:
+   - Instead of: load → for loop → filter → extract → save
+   - Use: loader.load() → analyzer.filter() → analyzer.extract_features() → saver.save()
+
+5. Test and verify:
+   - Run analysis using OOP classes
+   - Verify results match Exercise 1 (same features, same metadata)
+   - Document class interfaces (what methods, parameters, return types)
+
+**Deliverables:**
+- Python module with Signal, ECGAnalyzer, PCGAnalyzer, PPGAnalyzer classes
+- Updated analysis script using OOP (shorter, clearer than Exercise 1)
+- Verification: same results as Exercise 1, demonstrated side-by-side
+- Brief reflection: advantages of OOP approach? Disadvantages? When would you use this?
+
+**Skills Practiced:**
+- Class design and encapsulation (lecture 2)
+- Object interaction: analyzer methods call other methods (lecture 2)
+- File I/O with object-oriented approach (lecture 3)
+- Functions as building blocks (lecture 1)
+- Refactoring: taking working code and improving structure (lectures 1-4)
+
+---
+
+## Workshop Learning Outcomes
+
+By end of exercises, you should be able to:
+- ✓ Build complete signal processing workflows from raw data to validated features
+- ✓ Apply filtering, feature extraction, and validation techniques from lectures 5-7
+- ✓ Design reusable classes that encapsulate signal processing logic
+- ✓ Separate concerns: load (I/O) → analyze (processing) → save (I/O)
+- ✓ Document APIs: what methods exist, what inputs/outputs, what assumptions
+- ✓ Refactor working code into cleaner, more maintainable OOP structure
+- ✓ Verify that refactoring produces identical results (no bugs introduced)
+- ✓ Appreciate OOP: modularity, reusability, testability
 
 ---
 
@@ -695,8 +782,295 @@ This is a 2-exercise workshop focused on reflection and ethical analysis:
 
 ---
 
-**Note:** Lectures 9-12 (populations_data_1 through populations_data_4_workshop) were not included in provided notebooks, but the lecture_content.md overview indicates they cover:
-- Lecture 9: Multi-subject datasets, pandas groupby, distributions
-- Lecture 10: Statistical tests, hypothesis testing, confidence intervals
-- Lecture 11: Linear regression, model validation, feature selection
-- Lecture 12: End-to-end analysis, reproducibility, communication
+# LECTURE 9: Linear Regression with Population Data
+
+**Folder:** `populations_data_1`  
+**Duration:** 4h (2h lecture + 2h exercises)  
+**Jupyter Notebook:** `populations_1.ipynb`
+
+## Primary Topics Covered in Notebook
+
+**Linear Regression Review and Extension**
+- Recap from signals_3: fit line y = mx + b to minimize squared errors
+- Now applied to multi-subject population data (one row per subject)
+- Why regression at population scale: predict outcomes, understand relationships, identify risk factors
+
+**Preparing Population Data**
+- One row per subject, one column per feature/measurement
+- Missing data: handle with pandas (`dropna()`, `fillna()`)
+- Outliers: identify and decide (remove or investigate)
+- Normalization: scale features if on different ranges
+
+**Model Fitting and Evaluation**
+- Fit: `LinearRegression().fit(X, y)`
+- Predictions: `y_pred = model.predict(X)`
+- Metrics:
+  - **R²:** proportion of variance explained (0=no fit, 1=perfect)
+  - **RMSE (Root Mean Squared Error):** average prediction error in original units
+  - **Residuals:** differences between observed and predicted
+- Interpretation: slope (effect size), intercept (baseline)
+
+**Validation and Residuals**
+- Plot residuals vs predicted: should be random scatter (no pattern = good fit)
+- Histogram of residuals: should be roughly normal
+- Q-Q plot: residuals vs normal distribution
+- Non-random residuals indicate model is missing something (non-linear relationship, missing variables, subgroups)
+
+**Multiple Features (Multiple Linear Regression)**
+- Use multiple columns as predictors: `X = df[['age', 'weight', 'activity']]`
+- Fit and interpret: each coefficient is the effect of that feature holding others constant
+- Multicollinearity: if features correlate strongly, coefficients become unstable
+- Feature selection: which features matter? (correlation, backwards elimination, domain knowledge)
+
+**Prediction and Uncertainty**
+- Point estimate: `y_pred = model.predict(X_new)`
+- Confidence intervals: plausible range around prediction (larger for extrapolation)
+- Limitations: don't extrapolate far beyond training data range
+
+**Reproducibility with Metadata**
+- Record: feature names, feature units, fit date, analyst, software versions
+- Save model for reuse: `pickle.dump(model, open('model.pkl', 'wb'))`
+- Document assumptions: linearity, independence, normality of residuals
+
+## Exercise Structure
+- **Exercise 1:** Load population data, explore with scatter plots and correlations
+- **Exercise 2:** Fit simple linear regression (1 predictor), evaluate R², RMSE
+- **Exercise 3:** Visualize residuals, check assumptions
+- **Exercise 4:** Multiple linear regression (2+ predictors), compare models
+- **Exercise 5:** Prediction on new subjects, discuss confidence
+
+## Key Patterns
+- Prepare data: clean, check for missing/outliers
+- Fit model: visualize data first
+- Evaluate: R², RMSE, residuals tell the story
+- Validate assumptions: residual plots are diagnostic
+- Document: metadata for reproducibility
+
+---
+
+# LECTURE 10: Data Visualization and Unsupervised Learning
+
+**Folder:** `populations_data_2`  
+**Duration:** 4h (2h lecture + 2h exercises)  
+**Jupyter Notebook:** `populations_2.ipynb`
+
+## Primary Topics Covered in Notebook
+
+**Why Visualization for Population Data?**
+- Time series less useful: population data is cross-sectional (many subjects, one timepoint per subject)
+- Summary statistics alone hide structure: visualization reveals patterns, clusters, outliers
+- Exploratory Data Analysis (EDA): understand before modeling
+
+**Visualization Fundamentals**
+- **Scatter plot:** two continuous variables; see correlation, outliers, clusters
+- **Distribution plot (histogram):** one variable; see shape, center, spread, skewness
+- **Box plot:** distribution by groups; compare medians and spread across categories
+- **Bar plot:** categorical data; compare counts or means
+
+**Matplotlib and Seaborn Basics**
+- matplotlib: low-level control, `plt.scatter()`, `plt.hist()`, `plt.plot()`
+- seaborn: high-level, prettier defaults, `sns.scatterplot()`, `sns.histplot()`, `sns.boxplot()`
+- Subplots: `fig, ax = plt.subplots(1, 2)` to create multiple plots
+- Customization: labels, legends, titles, colors
+
+**When Time Series DON'T Make Sense**
+- Time series assumes data ordered by time (ECG samples, signals)
+- Population data: order irrelevant (subjects independent)
+- Visualizing population data as time series: misleading trends, false patterns
+- Right approach: scatter plots, histograms, box plots (order-independent)
+
+**Unsupervised Learning: Introduction**
+- Goal: find structure in unlabeled data
+- Applications: discover subgroups, detect anomalies, compression
+- Different from supervised: no ground truth labels to fit to
+
+**k-Means Clustering**
+- Idea: partition data into k clusters minimizing within-cluster variance
+- Algorithm:
+  1. Initialize k random cluster centers
+  2. Assign each point to nearest center
+  3. Update centers to mean of assigned points
+  4. Repeat until convergence
+- Choosing k: elbow plot (within-cluster variance vs k), domain knowledge
+- Implementation: `sklearn.cluster.KMeans(n_clusters=3).fit(X)`
+
+**Iris Dataset**
+- Classic dataset: 150 flowers, 4 features (sepal length/width, petal length/width)
+- 3 species (setosa, versicolor, virginica)
+- Why iris for clustering: visualizable (use 2 features), known ground truth for validation, interpretable
+- Clustering without using species label: unsupervised challenge
+
+**Visualizing Clusters**
+- Scatter plot with colors by cluster assignment
+- Feature pairs: plot (feature1, feature2) with cluster colors
+- Compare to true labels: silhouette score, purity
+- Silhouette coefficient: -1 (bad), 0 (on boundary), +1 (well-clustered)
+
+**Cluster Interpretation**
+- What do clusters represent? Compute mean features per cluster
+- Are clusters meaningful? Check if coherent (biologically, statistically)
+- Stability: rerun with different initializations (k-means is random)
+
+## Exercise Structure
+- **Exercise 1:** Load iris, explore with histograms and scatter plots
+- **Exercise 2:** Visualize 2D projections (different feature pairs)
+- **Exercise 3:** Why time series doesn't work (plot as time series to see nonsense)
+- **Exercise 4:** Apply k-means with k=3, visualize clusters
+- **Exercise 5:** Try different k values, use elbow plot to find "best" k
+- **Exercise 6:** Compute silhouette scores, interpret cluster quality
+
+## Key Patterns
+- EDA: visualize before modeling
+- Scatter plots: see correlations and clusters
+- Histograms: understand distributions
+- Unsupervised: no labels, discover patterns
+- k-means: partition data into k groups
+
+---
+
+# LECTURE 11: Supervised Learning – Classification
+
+**Folder:** `populations_data_3`  
+**Duration:** 4h (2h lecture + 2h exercises)  
+**Jupyter Notebook:** `populations_3.ipynb`
+
+## Primary Topics Covered in Notebook
+
+**Supervised vs Unsupervised**
+- **Supervised:** have ground truth labels, learn to predict new labels
+- **Unsupervised:** no labels, discover structure
+- This lecture: supervised classification (predict discrete categories)
+
+**Classification Problem**
+- Goal: given features (X), predict class label (y)
+- Examples: iris species from measurements, patient disease from biomarkers, signal quality (good/bad)
+- Outputs: predicted class, confidence/probability of each class
+
+**k-Nearest Neighbors (k-NN)**
+- Idea: a point's class is determined by its k nearest neighbors
+- Algorithm:
+  1. Store all training data
+  2. For new point, find k closest points (by distance, typically Euclidean)
+  3. Predict: majority class among those k neighbors
+- Choosing k: small k = flexible but noisy, large k = smooth but may underfit; typically 3-10
+- Implementation: `sklearn.neighbors.KNeighborsClassifier(n_neighbors=5).fit(X_train, y_train)`
+
+**Distance and Feature Scaling**
+- k-NN depends on distance: features with large ranges dominate
+- Solution: normalize/standardize features
+  - **Standardization:** (x - mean) / std (mean=0, std=1)
+  - **Normalization:** (x - min) / (max - min) (range 0-1)
+- `sklearn.preprocessing.StandardScaler()` for easy scaling
+- Always fit scaler on training data, apply to test data
+
+**Train-Test Split**
+- Never evaluate on training data: memorization, not generalization
+- Split: 70-80% train, 20-30% test
+- Random split to avoid order bias
+- `sklearn.model_selection.train_test_split()`
+
+**Model Evaluation**
+- **Accuracy:** (correct predictions) / (total predictions)
+- **Confusion matrix:** true positives, false positives, true negatives, false negatives
+- **Precision:** TP / (TP + FP) — of positive predictions, how many correct?
+- **Recall:** TP / (TP + FN) — of true positives, how many found?
+- **F1-score:** harmonic mean of precision and recall
+- Choose metric based on cost: medical diagnosis (recall), spam detection (precision)
+
+**Visualization: Decision Boundaries**
+- Plot 2D features (or 2D PCA projection) with colored regions
+- Each region is a predicted class
+- k-NN boundaries are local and wiggly (non-linear)
+- Shows how classifier carves up feature space
+
+**Overfitting and Generalization**
+- Overfitting: model memorizes training data, fails on new data (high training accuracy, low test accuracy)
+- k-NN overfitting: very small k (k=1 memorizes)
+- Solution: cross-validation to find good k
+
+**Cross-Validation**
+- k-fold cross-validation: split data into k folds, train k times (leave one fold out each time)
+- Evaluate on left-out fold, average results
+- More stable estimate than single train-test split
+- `sklearn.model_selection.cross_val_score()`
+
+**Iris Classification with k-NN**
+- Train on iris features, predict species
+- Compare predicted to true labels
+- Visualize: 2D projections with decision boundaries
+- Confusion matrix: which species confused with which?
+
+## Exercise Structure
+- **Exercise 1:** Train k-NN on iris with different k values
+- **Exercise 2:** Use train-test split, evaluate accuracy
+- **Exercise 3:** Scale features, observe improvement
+- **Exercise 4:** Visualize decision boundaries
+- **Exercise 5:** Compute confusion matrix and precision/recall
+- **Exercise 6:** Use cross-validation to select best k
+
+## Key Patterns
+- Supervised: use labels to train
+- k-NN: simple, requires scaled features
+- Train-test split: prevent overfitting
+- Evaluate: accuracy, precision, recall, confusion matrix
+- Cross-validate: stable model selection
+
+---
+
+# LECTURE 12: Data Integration Workshop
+
+**Folder:** `populations_data_4_workshop`  
+**Duration:** 4h (1h lecture + 3h workshop)
+
+## Workshop Structure
+
+This is an integrative workshop applying concepts from lectures 9-11 without introducing new topics.
+
+### **Exercise 1 (1h 30m): "From Features to Predictions"**
+
+**Scenario:** Given a population dataset with multiple features and a target variable, build an end-to-end analysis pipeline.
+
+**Tasks:**
+- Load data and explore with visualizations (histograms, scatter plots from lecture 10)
+- Clean data (handle missing values, outliers)
+- Fit linear regression model to predict continuous outcome (lecture 9 technique)
+- Evaluate with R², RMSE, residual plots
+- Document analysis: methods, findings, limitations
+
+**Integration elements:**
+- Visualization choices from lecture 10 inform feature selection
+- Regression model from lecture 9 predicts target
+- Metadata and reproducibility throughout
+
+### **Exercise 2 (1h 30m): "Unsupervised Discovery and Supervised Prediction"**
+
+**Scenario:** Given iris or similar population dataset, combine clustering and classification.
+
+**Tasks:**
+- Apply k-means clustering (lecture 10) to discover groups without using labels
+- Visualize clusters (scatter plots from lecture 10)
+- Train k-NN classifier (lecture 11) to predict species/groups from features
+- Compare: do k-NN predictions match k-means clusters?
+- Evaluate k-NN with train-test split, confusion matrix, cross-validation (lecture 11)
+- Discuss: when would unsupervised (clustering) be useful vs supervised (k-NN)?
+
+**Integration elements:**
+- Visualization (lecture 10) shows cluster structure
+- Clustering (lecture 10) finds natural groupings
+- Classification (lecture 11) predicts group membership
+- Cross-validation ensures generalization
+
+### **Workshop Themes**
+- **Pipeline:** load → visualize → clean → model → evaluate → document
+- **Visualization:** informs understanding and feature selection
+- **Unsupervised:** discovers structure (clustering from lecture 10)
+- **Supervised:** predicts with known labels (classification from lecture 11, regression from lecture 9)
+- **Reproducibility:** document methods, parameters, software versions
+- **Interpretation:** what do results mean? Limitations? Next steps?
+
+## Key Outcomes
+- Hands-on experience with full data analysis workflow
+- Integration of regression, clustering, and classification
+- Practice with visualization for decision-making
+- Reproducibility and documentation habits
+- Reflection on method choices
