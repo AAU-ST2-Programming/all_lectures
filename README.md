@@ -38,16 +38,17 @@ Overblik over 12 forelæsninger, der dækker grundlæggende programmering, objek
 # Literatur Oversigt
 Jeg elsker personligt gratis literatur.  *Specielt når det er lovligt.*
 
+## Bøger
+- [Think Python (eBook/PDF)](https://allendowney.github.io/ThinkPython/)
+- [Python for Everybody (eBook/PDF)](https://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf)
+- [Data Wrangling with Python (eBook/PDF)](https://datawranglingpy.gagolewski.com/datawranglingpy.pdf)
 ## Hjemmesider
 - https://www.tutorialspoint.com/python/index.htm
 - https://numpy.org/doc/stable/reference/index.html
 - https://matplotlib.org/stable/
 - https://scikit-learn.org/stable/
+- https://docs.conda.io/projects/conda/en/stable/user-guide/index.html
 
-## Bøger
-- [Think Python (eBook/PDF)](https://allendowney.github.io/ThinkPython/)
-- [Python for Everybody (eBook/PDF)](https://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf)
-- [Data Wrangling with Python (eBook/PDF)](https://datawranglingpy.gagolewski.com/datawranglingpy.pdf)
 ---
 
 # FORELÆSNING 1: OOP 1 – Hej C og Python
