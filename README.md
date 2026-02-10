@@ -43,6 +43,7 @@ Jeg elsker personligt gratis literatur.  *Specielt når det er lovligt.*
 - [Python for Everybody (eBook/PDF)](https://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf)
 - [Data Wrangling with Python (eBook/PDF)](https://datawranglingpy.gagolewski.com/datawranglingpy.pdf)
 ## Hjemmesider
+- https://docs.python.org/3/library/index.html
 - https://www.tutorialspoint.com/python/index.htm
 - https://numpy.org/doc/stable/reference/index.html
 - https://matplotlib.org/stable/
