@@ -631,19 +631,19 @@ Når du er færdig med øvelserne, bør du kunne:
 - Hvorfor regression på populationsniveau: forudsige udfald, forstå relationer, identificere risikofaktorer
 
 **Forberedelse af populationsdata**
-- Én række per person, én kolonne per feature/måling
-- Manglende data: håndter med pandas (`dropna()`, `fillna()`)
+- Data organiseret som 2D NumPy arrays: én række per person, én kolonne per feature
+- Manglende data: håndter med NumPy (`np.isnan()`, masking, eller fjern rækker)
 - Outliers: identificér og beslut (fjern eller undersøg)
 - Normalisering: skaler features hvis de har forskellige ranges
 
 **Model-fit og evaluering**
-- Fit: `LinearRegression().fit(X, y)`
+- Fit: `from sklearn.linear_model import LinearRegression; model = LinearRegression().fit(X, y)`
 - Forudsigelser: `y_pred = model.predict(X)`
 - Metrikker:
-  - **R²:** andel af varians forklaret (0=ingen fit, 1=perfekt fit)
-  - **RMSE (Root Mean Squared Error):** gennemsnitlig fejl i originale enheder
-  - **Residualer:** forskelle mellem observerede og forudsagte
-- Fortolkning: hældning (effektstørrelse), skæring (baseline)
+  - **R²:** andel af varians forklaret (0=ingen fit, 1=perfekt fit), brug `model.score(X, y)`
+  - **RMSE (Root Mean Squared Error):** `np.sqrt(np.mean((y - y_pred)**2))`
+  - **Residualer:** `residuals = y - y_pred`
+- Fortolkning: hældning `model.coef_` (effektstørrelse), skæring `model.intercept_` (baseline)
 
 **Validering og residualer**
 - Plot residualer vs forudsagte: bør være tilfældig spredning (ingen mønster = godt fit)
@@ -652,10 +652,10 @@ Når du er færdig med øvelserne, bør du kunne:
 - Ikke-tilfældige residualer indikerer at modellen mangler noget (ikke-lineær relation, manglende variabler, subgrupper)
 
 **Flere features (multiple lineær regression)**
-- Brug flere kolonner som prædiktorer: `X = df[['age', 'weight', 'activity']]`
+- Brug flere kolonner som prædiktorer: `X = data[:, [0, 1, 2]]` (vælg kolonner fra NumPy array)
 - Fit og fortolkning: hver koefficient er effekten af en feature, når de andre holdes konstante
 - Multikollinearitet: hvis features korrelerer stærkt, bliver koefficienter ustabile
-- Feature selection: hvilke features betyder noget? (korrelation, baglæns elimination, domæneviden)
+- Feature selection: hvilke features betyder noget? (korrelation med `np.corrcoef()`, baglæns elimination, domæneviden)
 
 **Forudsigelse og usikkerhed**
 - Punktestimat: `y_pred = model.predict(X_new)`
@@ -664,14 +664,13 @@ Når du er færdig med øvelserne, bør du kunne:
 
 **Reproducerbarhed med metadata**
 - Registrér: feature-navne, enheder, fit-dato, analytiker, software-versioner
-- Gem model til genbrug: `pickle.dump(model, open('model.pkl', 'wb'))`
 - Dokumentér antagelser: linearitet, uafhængighed, normalitet af residualer
 
 ## Centrale mønstre
-- Forbered data: rens, tjek manglende/outliers
-- Fit model: visualisér data først
+- Forbered data: indlæs med `np.loadtxt()` eller `np.genfromtxt()`, rens, tjek manglende/outliers
+- Fit model: visualisér data først med matplotlib scatter plots
 - Evaluer: R², RMSE, residualer fortæller historien
-- Validér antagelser: residualplots er diagnostiske
+- Validér antagelser: residualplots er diagnostiske (brug `plt.scatter()`)
 - Dokumentér: metadata for reproducerbarhed
 
 ---
@@ -684,22 +683,23 @@ Når du er færdig med øvelserne, bør du kunne:
 - Exploratory Data Analysis (EDA): forstå før modellering
 
 **Grundlæggende visualisering**
-- **Scatter plot:** to kontinuerte variable; se korrelation, outliers, Clusterr
-- **Fordelingsplot (histogram):** én variabel; se form, center, spredning, skævhed
-- **Box plot:** fordeling pr. gruppe; sammenlign median og spredning på tværs af kategorier
-- **Bar plot:** kategoriske data; sammenlign antal eller gennemsnit
+- **Scatter plot:** to kontinuerte variable; se korrelation, outliers, Clusterr med `plt.scatter(x, y)`
+- **Fordelingsplot (histogram):** én variabel; se form, center, spredning, skævhed med `plt.hist(data, bins=20)`
+- **Box plot:** fordeling pr. gruppe; sammenlign median og spredning på tværs af kategorier med `plt.boxplot()`
+- **Bar plot:** kategoriske data; sammenlign antal eller gennemsnit med `plt.bar()`
 
-**Matplotlib og Seaborn basics**
-- matplotlib: lav-niveau kontrol, `plt.scatter()`, `plt.hist()`, `plt.plot()`
-- seaborn: high-level, pænere defaults, `sns.scatterplot()`, `sns.histplot()`, `sns.boxplot()`
+**Matplotlib basics**
+- Scatter plots: `plt.scatter(x, y, c=colors)` for farvekodning
+- Histogrammer: `plt.hist(data, bins=20, alpha=0.7)`
 - Subplots: `fig, ax = plt.subplots(1, 2)` til flere plots
-- Tilpasning: labels, legend, titler, farver
+- Tilpasning: `plt.xlabel()`, `plt.ylabel()`, `plt.legend()`, `plt.title()`, farver med `c=` parameter
 
 **Når tidsserier IKKE giver mening**
 - Tidsserier antager data sorteret efter tid (EKG-samples, signaler)
 - Populationsdata: rækkefølge er irrelevant (personer er uafhængige)
 - Visualisering af populationsdata som tidsserier: misvisende trends, falske mønstre
 - Rette tilgang: scatter plots, histogrammer, box plots (rækkefølge-uafhængig)
+- Brug NumPy arrays til at holde data: `X = np.array([[feature1], [feature2], ...])`
 
 **unsupervised læring: introduktion**
 - Mål: find struktur i data uden labels
@@ -719,6 +719,7 @@ Når du er færdig med øvelserne, bør du kunne:
 **Iris-datasæt**
 - Klassisk datasæt: 150 blomster, 4 features (sepal length/width, petal length/width)
 - 3 arter (setosa, versicolor, virginica)
+- Indlæs med: `from sklearn.datasets import load_iris; iris = load_iris(); X = iris.data; y = iris.target`
 - Hvorfor iris til clustering: visualiserbar (brug 2 features), kendt ground truth til validering, fortolkelig
 - Clustering uden at bruge arts-labels: unsupervised udfordring
 
@@ -729,16 +730,16 @@ Når du er færdig med øvelserne, bør du kunne:
 - Silhouette-koefficient: -1 (dårlig), 0 (på grænsen), +1 (vel-Clustert)
 
 **Clusterfortolkning**
-- Hvad repræsenterer Clusterrne? Beregn gennemsnits-features pr. Cluster
+- Hvad repræsenterer Clusterrne? Beregn gennemsnits-features pr. Cluster med NumPy: `np.mean(X[labels == i], axis=0)`
 - Er Clusterrne meningsfulde? Tjek om de er sammenhængende (biologisk, statistisk)
 - Stabilitet: genkør med forskellige initialiseringer (k-means er tilfældig)
 
 ## Centrale mønstre
-- EDA: visualisér før modellering
-- Scatter plots: se korrelationer og Clusterr
-- Histogrammer: forstå fordelinger
+- EDA: visualisér før modellering med matplotlib
+- Scatter plots: se korrelationer og Clusterr med `plt.scatter()`
+- Histogrammer: forstå fordelinger med `plt.hist()`
 - unsupervised: ingen labels, opdag mønstre
-- k-means: opdel data i k grupper
+- k-means: opdel data i k grupper med `sklearn.cluster.KMeans`
 
 ---
 
@@ -766,9 +767,9 @@ Når du er færdig med øvelserne, bør du kunne:
 **Afstand og feature-skalering**
 - k-NN afhænger af afstand: features med store ranges dominerer
 - Løsning: normaliser/standardisér features
-  - **Standardisering:** (x - mean) / std (mean=0, std=1)
-  - **Normalisering:** (x - min) / (max - min) (range 0-1)
-- `sklearn.preprocessing.StandardScaler()` til nem skalering
+  - **Standardisering:** `(X - np.mean(X, axis=0)) / np.std(X, axis=0)` (mean=0, std=1)
+  - **Normalisering:** `(X - np.min(X, axis=0)) / (np.max(X, axis=0) - np.min(X, axis=0))` (range 0-1)
+- Alternativt: `sklearn.preprocessing.StandardScaler()` til nem skalering
 - Fit altid scaler på træningsdata, anvend på testdata
 
 **Train-test split**
@@ -828,10 +829,10 @@ Dette er en integrerende workshop, der anvender begreber fra forelæsning 9-11 u
 **Scenarie:** Givet et populationsdatasæt med flere features og en target-variabel, byg en end-to-end analyse-pipeline.
 
 **Opgaver:**
-- Indlæs data og udforsk med visualiseringer (histogrammer, scatter plots fra forelæsning 10)
-- Rens data (håndtér manglende værdier, outliers)
+- Indlæs data med `np.loadtxt()` eller `np.genfromtxt()` og udforsk med visualiseringer (histogrammer, scatter plots fra forelæsning 10)
+- Rens data (håndtér manglende værdier med NumPy masking, outliers)
 - Fit lineær regressionsmodel til at forudsige kontinuerligt udfald (forelæsning 9)
-- Evaluer med R², RMSE, residualplots
+- Evaluer med R², RMSE, residualplots (brug matplotlib)
 - Dokumentér analysen: metoder, fund, begrænsninger
 
 **Integrations-elementer:**
