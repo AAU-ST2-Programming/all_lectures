@@ -39,8 +39,8 @@ Overblik over 12 forelæsninger, der dækker grundlæggende programmering, objek
 Jeg elsker personligt gratis literatur.  *Specielt når det er lovligt.*
 
 ## Bøger
-- [Think Python (eBook/PDF)](https://allendowney.github.io/ThinkPython/)
-- [Python for Everybody (eBook/PDF)](https://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf)
+- [Think Python, 3rd Edition af Allen B. Downey (online bog)](https://allendowney.github.io/ThinkPython/)
+- [Python for Everybody af Charles Severance (PDF)](https://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf)
 - [Data Wrangling with Python (eBook/PDF)](https://datawranglingpy.gagolewski.com/datawranglingpy.pdf)
 ## Hjemmesider
 - https://docs.python.org/3/library/index.html
@@ -189,7 +189,7 @@ Grundlaget for Python-programmering: forstå syntaks, brug debugger, øv simple 
 - Gem kun nødvendige data; rå biosignaler er følsomme
 - Retention-politikker: hvor længe gemmes data? hvornår slettes de?
 - Backup-strategi: til gendannelse, ikke uendelig opbevaring
-- GDPR: retten til at blive glemt, opbevaringsgrænser
+- [GDPR](https://gdpr.dk): retten til at blive glemt, opbevaringsgrænser
 
 
 ## Centrale mønstre
@@ -330,7 +330,7 @@ Når du er færdig med øvelserne, bør du kunne:
 - Transparens: dokumentér alle processing-trin
 - Audit trails: hvem gjorde hvad, hvornår, med hvilke parametre (compliance/ansvarlighed)
 
-**Etik: Håndtering af følsomme helbredsdata (GDPR/Dansk lov)**
+**Etik: Håndtering af følsomme helbredsdata ([GDPR](https://gdpr.dk)/Dansk lov)**
 - Formål: definér før behandling
 - Retsgrundlag: hvorfor er dette lovligt?
 - Eksterne services: hvis cloud bruges, kræves databehandleraftale
