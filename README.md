@@ -15,7 +15,7 @@ Denne vil download alle github repos inden i den mappe hvor du har sync.py.
 Overblik over 12 forelæsninger, der dækker grundlæggende programmering, objektorienteret design, signalbehandling og analyse af populationsdata.
 
 ---
-[](https://raw.githubusercontent.com/AAU-ST2-Programming/all_lectures/main/shared_overview.md)
+![ggd](overview_files/shared_overview_table.png)
 
 ---
 
