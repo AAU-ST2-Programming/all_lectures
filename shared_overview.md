@@ -1,5 +1,3 @@
-# ST2 ANVENDT PROGRAMMERING – Overblik
-
 ## Alle forelæsninger
 
 | # | Forelæsning | Mappe | Primære emner |
