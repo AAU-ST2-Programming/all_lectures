@@ -11,6 +11,6 @@
 | 7 | Feature engineering, PPG og regression | signals_3 | Feature-definition, PPG-fysiologi, lineær regression, variationsmål |
 | 8 | Signalintegration og etik | signals_4_workshop | Multimodal integration, refleksion over signal-workflow, etisk analyse |
 | 9 | Lineær regression med populationsdata | populations_data_1 | Lineær regression, modelvalidering, residualer |
-| **10** | **Datavisualisering og unsupervised læring** | **populations_data_2** | **Datavisualisering, fordelinger, scatter plots, k-means clustering (Iris-datasæt)** |
+| 10 | Datavisualisering og unsupervised læring | populations_data_2 | Datavisualisering, fordelinger, scatter plots, k-means clustering (Iris-datasæt) |
 | 11 | Supervised learning: klassifikation | populations_data_3 | k-NN-klassifikation, beslutningsgrænser, modelevaluering |
 | 12 | Data-integration workshop | populations_data_4_workshop | End-to-end analyse: regression, clustering, klassifikation, reproducerbarhed, formidling |
