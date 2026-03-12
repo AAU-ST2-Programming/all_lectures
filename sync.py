@@ -3,6 +3,7 @@ import subprocess
 import os
 import shutil
 import argparse
+import sys
 from pathlib import Path
 
 REPOS_FILE = "repos.txt"
@@ -43,7 +44,8 @@ def run_overview_generator():
         return
 
     print(f"Running {OVERVIEW_GENERATOR}...")
-    run(["python", str(OVERVIEW_GENERATOR)])
+    # Reuse the active interpreter (e.g. `uv run`) so project deps are available.
+    run([sys.executable, str(OVERVIEW_GENERATOR)])
 
 def main():
     parser = argparse.ArgumentParser(description="Sync git repositories from repos.txt")
