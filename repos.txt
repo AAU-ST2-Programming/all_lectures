@@ -6,6 +6,7 @@ https://github.com/AAU-ST2-Programming/signals_1.git
 https://github.com/AAU-ST2-Programming/signals_2.git
 https://github.com/AAU-ST2-Programming/signals_3.git
 https://github.com/AAU-ST2-Programming/signals_4_workshop.git
+https://github.com/Anvendt-Programmering/python_serial_recorder
 https://github.com/AAU-ST2-Programming/signals_1.git
 https://github.com/AAU-ST2-Programming/signals_2.git
 https://github.com/AAU-ST2-Programming/signals_3.git
